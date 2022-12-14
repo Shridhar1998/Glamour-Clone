@@ -1,8 +1,11 @@
+import AddressForm from "./pages/AddressForm";
+import Cart from "./pages/Cart";
 
 function App() {
   return (
     <div className="App">
-      Hello
+      {/* <Cart/> */}
+      <AddressForm/>
     </div>
   );
 }

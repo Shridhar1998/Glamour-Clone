@@ -1,0 +1,9 @@
+.single_container{
+    background:white;
+
+
+}
+.single_container * {
+    color: black;
+
+}

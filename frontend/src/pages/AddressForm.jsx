@@ -2,6 +2,7 @@ import { Box, Text } from "@chakra-ui/react";
 import React from "react";
 import { useState } from "react";
 import "./addressform.css";
+// import {Link} from 'react-router-dom'
 
 const AddressForm = () => {
   const [type, setType] = useState("");
@@ -20,6 +21,8 @@ const AddressForm = () => {
     }
   };
 
+  console.log(type);
+
   return (
     <>
       <Box className="addressbox">
@@ -27,7 +30,7 @@ const AddressForm = () => {
           ADD NEW ADDRESS
         </Text>
         <div className="line1"></div>
-        <Text fontSize="17px" fontWeight={"600"}>
+        <Text fontSize="16px" fontWeight={"600"} textAlign="left" ml={"5vw"} mt="30px">
           Contact
         </Text>
         <Box className="contactInfo">
@@ -40,9 +43,12 @@ const AddressForm = () => {
             <label>Mobile</label>
           </div>
         </Box>
-        <Box></Box>
+        <Box className="divider"></Box>
+        <Text fontSize="16px" fontWeight={"600"} textAlign="left" ml={"5vw"} mt="3vh">
+          Address
+        </Text>
         <Box className="addressInfo">
-          <Box>
+          <Box className="addresspin">
             <div className="myfloat">
               <input type="text" placeholder=" " required />
               <label>Pincode</label>
@@ -56,20 +62,24 @@ const AddressForm = () => {
               <label>State</label>
             </div>
           </Box>
-          <Box>
-            <div className="myfloat">
-              <input type="text" placeholder=" " required />
+          <Box className="detailedaddress">
+            <div className="myfloat addressfield">
+              <input type="text" placeholder=" " required  />
               <label>Address</label>
             </div>
           </Box>
-          <Text>Type of Address</Text>
-          <Box>
+          <Text fontSize="16px" fontWeight={"600"} textAlign="left" ml={"5vw"} mt="3vh">Type of Address</Text>
+          <Box className="typesof">
             <div className="home type" onClick={handleAddress}>
               Home
             </div>
             <div className="office type" onClick={handleAddress}>
               Office
             </div>
+          </Box>
+          <Box className="lastbuttons">
+            <button className="lastbtn">Back</button>
+            <button className="lastbtn shipbtn">Ship to this Address</button>
           </Box>
         </Box>
       </Box>

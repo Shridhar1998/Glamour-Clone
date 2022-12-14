@@ -6,8 +6,7 @@ import SingleProduct from "./pages/ProductsPage/SingleProduct";
 function App() {
   return (
     <div className="App">
-      {/* <ProductPage/> */}
-      <SingleProduct />
+     
     </div>
   );
 }

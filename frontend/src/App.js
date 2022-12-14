@@ -1,3 +1,5 @@
+import { Button, useDisclosure } from "@chakra-ui/react";
+import Signup from "./components/Signup";
 
 import Navbar from "./components/navbar/Navbar";
 import AllRoutes from "./routes/AllRoutes";

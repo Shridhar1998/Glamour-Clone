@@ -11,18 +11,26 @@ import {
   Flex,
   Heading,
   Image,
+
   SimpleGrid,
   Stack,
   Text,
 } from "@chakra-ui/react";
 import React from "react";
 import { useState } from "react";
+
+
 import Header_Gradient from "../../components/ProductPage/Header_Gradient";
 import styles from "./product.module.css";
 
 function ProductPage() {
-  console.log(styles);
+
   const [data, setData] = useState(Array(3).fill(0));
+
+  const SingleClick = () => {
+    
+  };
+
   return (
     <Container
       className={styles.prod_container}
@@ -52,13 +60,15 @@ function ProductPage() {
         minChildWidth={{ base: "100%", md: "40%", lg: "30%" }}
         spacing="30px"
       >
-        {data.map((e) => (
-          <Card
+        {data.map((e,i) => (
+       <Card
+       key={i}
             maxW="sm"
             bg={"#ffff"}
             borderRadius={"2px"}
             boxShadow="rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px"
             _hover={{ boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px" }}
+            onClick={() => SingleClick}
           >
             <CardBody>
               <Center height={"300px"}>
@@ -103,6 +113,7 @@ function ProductPage() {
             </CardBody>
             <Divider />
           </Card>
+          
         ))}
       </SimpleGrid>
     </Container>

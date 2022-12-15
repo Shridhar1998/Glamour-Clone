@@ -1,7 +1,7 @@
 import { Button, useColorModeValue } from "@chakra-ui/react";
 import React from "react";
 
-function P_Button({text}) {
+function P_Button({ text }) {
   return (
     <Button
       rounded={"none"}
@@ -9,8 +9,8 @@ function P_Button({text}) {
       mt={8}
       size={"lg"}
       py={"7"}
-      bg={useColorModeValue("gray.900", "gray.50")}
-      color={useColorModeValue("black", "gray.900")}
+      bgColor="black"
+      color="white"
       textTransform={"uppercase"}
       _hover={{
         transform: "translateY(2px)",

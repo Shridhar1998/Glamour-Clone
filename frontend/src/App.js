@@ -12,7 +12,6 @@ function App() {
     <div className="App" style={{ background: "white" }}>
       <Navbar />
       <AllRoutes />
-      <ProductPage />
     </div>
   );
 }

@@ -15,7 +15,8 @@ function App() {
       <AllRoutes/>
 
       {/* <Cart/> */}
-      <AddressForm/>
+      {/* <AddressForm/> */}
+      
 
     </div>
   );

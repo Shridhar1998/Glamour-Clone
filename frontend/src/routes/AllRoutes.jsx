@@ -1,5 +1,6 @@
 import React from 'react'
 import { Route, Routes } from 'react-router-dom'
+import Checkout from '../pages/Checkout'
 import HomePage from '../pages/HomePage'
 
 const AllRoutes = () => {
@@ -9,7 +10,7 @@ const AllRoutes = () => {
             <Route path='' />
             <Route path='' />
             <Route path='' />
-            <Route path='' />
+            <Route path='/checkout' element={<Checkout/>} />
             <Route path='' />
         </Routes>
     )

@@ -1,5 +1,4 @@
 import {
-	Button,
 	Modal,
 	ModalBody,
 	ModalCloseButton,
@@ -13,39 +12,62 @@ import {
 	TabPanels,
 	Tabs,
 } from "@chakra-ui/react";
-import React from "react";
+import React, { useState } from "react";
 import Form from "./Form";
 
 const Signup = ({ isOpen, onClose }) => {
+	const initState = {
+		fullname: "",
+		email: "",
+		password: "",
+	};
+	const [type, setType] = useState("user");
+	const [form, setForm] = useState(initState);
+	const handleInput = ({ target: { name, value } }) => {
+		setForm({ ...form, [name]: value });
+	};
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		console.log(form, type);
+	};
 	return (
 		<Modal isOpen={isOpen} onClose={onClose}>
 			<ModalOverlay />
 			<ModalContent>
-				<ModalHeader>Signup</ModalHeader>
-				<ModalCloseButton />
-				<ModalBody>
-					<Tabs isFitted variant="enclosed">
-						<TabList mb="1em">
-							<Tab>Customer</Tab>
-							<Tab>Seller</Tab>
-						</TabList>
-						<TabPanels>
-							<TabPanel>
-								<Form />
-							</TabPanel>
-							<TabPanel>
-								<Form />
-							</TabPanel>
-						</TabPanels>
-					</Tabs>
-				</ModalBody>
+				<form onSubmit={handleSubmit}>
+					<ModalHeader>Signup</ModalHeader>
+					<ModalCloseButton />
+					<ModalBody>
+						<Tabs isFitted variant="enclosed">
+							<TabList mb="1em">
+								<Tab
+									onClick={() => {
+										setType("user");
+									}}
+								>
+									Customer
+								</Tab>
+								<Tab
+									onClick={() => {
+										setType("seller");
+									}}
+								>
+									Seller
+								</Tab>
+							</TabList>
+							<TabPanels>
+								<TabPanel>
+									<Form {...form} onClose={onClose} handleInput={handleInput} />
+								</TabPanel>
+								<TabPanel>
+									<Form {...form} onClose={onClose} handleInput={handleInput} />
+								</TabPanel>
+							</TabPanels>
+						</Tabs>
+					</ModalBody>
 
-				<ModalFooter>
-					<Button colorScheme="blue" mr={3} onClick={onClose}>
-						Close
-					</Button>
-					<Button variant="ghost">Signup</Button>
-				</ModalFooter>
+					<ModalFooter></ModalFooter>
+				</form>
 			</ModalContent>
 		</Modal>
 	);

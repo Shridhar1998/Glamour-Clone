@@ -1,0 +1,39 @@
+.paymentouterbox{
+    width: 80%;
+    border: 1px solid ;
+    padding: 5px;
+    display: flex;
+    margin: auto;
+}
+
+.paymentoptions{
+    width: 100%;
+    padding: 3px;
+}
+.upiouter{
+
+}
+.inputbox{
+    width: 90%;
+    display: flex;
+    margin: auto;
+}
+.inputupi{
+    width: 50%;
+    outline: none;
+    height: 30px;
+    border: 1px solid;
+    padding-left: 10px;
+}
+.upibutton{
+    background-color: black;
+    color: white;
+    width: 20%;
+    height: 30px;
+    font-size: 16px;
+}
+.netbank{
+    width: 90%;
+    display: flex;
+    margin: auto;
+}

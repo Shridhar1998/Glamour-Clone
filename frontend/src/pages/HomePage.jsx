@@ -191,7 +191,7 @@ const HomePage = () => {
           <Image h={100} w={"100%"} src='https://files.myglamm.com/site-images/original/Row-43-Disclaimer-Strip-3360x220.png' />
         </Box>
       </Box>
-      <Box mt={10}>
+      <Box m={4} mt={10}>
         
           <iframe height={"600px"} width={"100%"}
             src="https://www.youtube.com/embed/GdcxfyKNiDg?vq=hd1080&autoplay=1&loop=1&modestbranding=1&rel=0&cc_load_policy=1&iv_load_policy=3&fs=0&color=white&controls=0&disablekb=1&playlist=GdcxfyKNiDg"

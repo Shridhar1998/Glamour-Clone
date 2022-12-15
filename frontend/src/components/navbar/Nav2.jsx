@@ -16,7 +16,7 @@ const Nav2 = () => {
         <Box margin="auto" w='70%' h='70px' display='flex' justifyContent='space-between'>
             <Flex width='100%'>
                 <Box>
-                    <Link to='/'><Image w='190px' h='68px' src={logo} /></Link>
+                    <Link to='/'><Image w='230px' h='80px' src={logo} /></Link>
                 </Box>
                 <Hide below='md'>
                 <Stack ml='5'>

@@ -37,7 +37,7 @@ app.post("/login", async(req,res)=> {
     const {email, password} = req.body; //password will verify with hash later
 
     const user = await UserModel.findOne({email});
-    console.log(user)
+    // console.log(user)
     if(user){
         const token = jwt.sign(
             {id: user._id, name: user.name, email: user.email, role: user.role},

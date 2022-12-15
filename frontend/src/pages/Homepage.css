@@ -1,0 +1,10 @@
+
+.flexBoxForHome{
+    padding:15px;
+    margin:auto;
+    width:70%;
+    gap:30px;
+    cursor: pointer;
+    align-items: center;
+    justify-content: space-between;
+}

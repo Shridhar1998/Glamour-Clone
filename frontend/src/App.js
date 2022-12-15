@@ -9,9 +9,13 @@ import ProductPage from "./pages/ProductsPage/ProductPage";
 
 function App() {
   return (
-    <div className="App" style={{ background: "white" }}>
-      <Navbar />
-      <AllRoutes />
+    <div className="App">
+      <Navbar/>
+      <AllRoutes/>
+
+      {/* <Cart/> */}
+      {/* <AddressForm/> */}
+      
     </div>
   );
 }

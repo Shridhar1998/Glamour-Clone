@@ -16,8 +16,8 @@ const Nav3 = () => {
     return (
         <Flex width='70%' margin='auto' >
 
-            <Box fontFamily="Roboto" className="dropdown">
-                <Link top=''><Box className="dropbtn"> HOME </Box></Link>
+            <Box  className="dropdown">
+                <Link  top=''><Box fontFamily="Roboto" className="dropbtn"> HOME </Box></Link>
             </Box>
             <Spacer />
 
@@ -300,7 +300,7 @@ const Nav3 = () => {
             <Spacer />
             {/* Rewards */}
             <Box className="dropdown">
-                <Link to=''> <Box fontFamily="Roboto" className="dropbtn">REWARDS</Box></Link>
+                <Link to=''> <Box fontFamily="Roboto" className="dropbtn">REWARD</Box></Link>
                 <Box className="dropdown-content" marginLeft='-600px' >
 
                     <Box width='700px'  >

@@ -15,7 +15,7 @@ function App() {
 
 	return (
 		<div className="App">
-			{/* <Button onClick={onOpen}>Open Modal</Button>
+			<Button onClick={onOpen}>Open Modal</Button>
 			{changeValue ? (
 				<Signup
 					isOpen={isOpen}
@@ -28,11 +28,13 @@ function App() {
 					onClose={onClose}
 					setChangeValue={setChangeValue}
 				/>
+
 			)} */}
 
       <Navbar/>
       <AllRoutes/>
       <Footer/>
+
 
 		</div>
 	);

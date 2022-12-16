@@ -5,10 +5,10 @@ function P_Button({ text }) {
   return (
     <Button
       rounded={"none"}
-      minW={"200px"}
-      mt={8}
-      size={"lg"}
-      py={"7"}
+      minW={"180px"}
+      mt={7}
+      size={"md"}
+      py={"6"}
       bgColor="black"
       color="white"
       textTransform={"uppercase"}

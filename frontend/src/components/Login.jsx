@@ -19,13 +19,19 @@ import {
 	TabPanels,
 	Tabs,
 } from "@chakra-ui/react";
+import { useNavigate } from "react-router-dom";
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { loginApi } from "../redux/Auth/auth.actions";
+import { getItem } from "../redux/localStorage";
 
 const Login = ({ isOpen, onClose, setChangeValue }) => {
 	const initState = {
 		email: "",
 		password: "",
 	};
+	const dispatch = useDispatch();
+	const navigate = useNavigate();
 	const [show, setShow] = React.useState(false);
 	const handleClick = () => setShow(!show);
 	const [form, setForm] = useState(initState);
@@ -35,6 +41,7 @@ const Login = ({ isOpen, onClose, setChangeValue }) => {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		console.log(form);
+		dispatch(loginApi(form)).then((res) => console.log(res));
 	};
 
 	return (
@@ -45,13 +52,18 @@ const Login = ({ isOpen, onClose, setChangeValue }) => {
 					<ModalHeader>Login</ModalHeader>
 					<ModalCloseButton />
 					<ModalBody>
-						<Button
-							onClick={() => {
-								setChangeValue(true);
-							}}
-						>
-							Signup
-						</Button>
+						<Flex gap="3">
+							Create new Account{" "}
+							<Link
+								onClick={() => {
+									setChangeValue(true);
+								}}
+								variant="unstyled"
+							>
+								{" "}
+								Signup
+							</Link>
+						</Flex>
 						<Tabs isFitted variant="enclosed">
 							<TabPanels>
 								<TabPanel>

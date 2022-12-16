@@ -17,22 +17,47 @@ import {
 	Tabs,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useToast } from "@chakra-ui/react";
+import { signUpApi } from "../redux/Auth/auth.actions";
 import Form from "./Form";
 
 const Signup = ({ isOpen, onClose, setChangeValue }) => {
 	const initState = {
-		fullname: "",
+		name: "",
 		email: "",
 		password: "",
+		role: "user",
 	};
-	const [type, setType] = useState("user");
+	const dispatch = useDispatch();
+	const toast = useToast();
 	const [form, setForm] = useState(initState);
 	const handleInput = ({ target: { name, value } }) => {
 		setForm({ ...form, [name]: value });
 	};
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		console.log(form, type);
+		dispatch(signUpApi(form))
+			.then((res) => {
+				toast({
+					title: "New user added! Welcome✨",
+					description: "It's a start of something amazing.",
+					position: "top-left",
+					status: "success",
+					duration: 5000,
+					isClosable: true,
+				});
+			})
+			.catch((err) => {
+				toast({
+					title: "Internal server error!",
+					description: "Please try after sometime.",
+					position: "top-left",
+					status: "error",
+					duration: 5000,
+					isClosable: true,
+				});
+			});
 	};
 	return (
 		<Modal isOpen={isOpen} onClose={onClose}>
@@ -42,25 +67,30 @@ const Signup = ({ isOpen, onClose, setChangeValue }) => {
 					<ModalHeader>Signup</ModalHeader>
 					<ModalCloseButton />
 					<ModalBody>
-						<Button
-							onClick={() => {
-								setChangeValue(false);
-							}}
-						>
-							Login
-						</Button>
+						<Flex gap="3" pb="4">
+							Already have an account
+							<Link
+								onClick={() => {
+									setChangeValue(false);
+								}}
+								variant="unstyled"
+							>
+								{" "}
+								Login
+							</Link>
+						</Flex>
 						<Tabs isFitted variant="enclosed">
 							<TabList mb="1em">
 								<Tab
 									onClick={() => {
-										setType("user");
+										setForm({ ...form, role: "user" });
 									}}
 								>
 									Customer
 								</Tab>
 								<Tab
 									onClick={() => {
-										setType("seller");
+										setForm({ ...form, role: "seller" });
 									}}
 								>
 									Seller

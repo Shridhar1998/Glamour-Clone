@@ -1,7 +1,12 @@
 import {
 	Button,
 	Flex,
+	FormControl,
+	FormLabel,
 	Image,
+	Input,
+	InputGroup,
+	InputRightElement,
 	Link,
 	Modal,
 	ModalBody,
@@ -10,68 +15,74 @@ import {
 	ModalFooter,
 	ModalHeader,
 	ModalOverlay,
-	Tab,
-	TabList,
 	TabPanel,
 	TabPanels,
 	Tabs,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
-import Form from "./Form";
 
-const Signup = ({ isOpen, onClose, setChangeValue }) => {
+const Login = ({ isOpen, onClose, setChangeValue }) => {
 	const initState = {
-		fullname: "",
 		email: "",
 		password: "",
 	};
-	const [type, setType] = useState("user");
+	const [show, setShow] = React.useState(false);
+	const handleClick = () => setShow(!show);
 	const [form, setForm] = useState(initState);
 	const handleInput = ({ target: { name, value } }) => {
 		setForm({ ...form, [name]: value });
 	};
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		console.log(form, type);
+		console.log(form);
 	};
+
 	return (
 		<Modal isOpen={isOpen} onClose={onClose}>
 			<ModalOverlay />
 			<ModalContent>
 				<form onSubmit={handleSubmit}>
-					<ModalHeader>Signup</ModalHeader>
+					<ModalHeader>Login</ModalHeader>
 					<ModalCloseButton />
 					<ModalBody>
 						<Button
 							onClick={() => {
-								setChangeValue(false);
+								setChangeValue(true);
 							}}
 						>
-							Login
+							Signup
 						</Button>
 						<Tabs isFitted variant="enclosed">
-							<TabList mb="1em">
-								<Tab
-									onClick={() => {
-										setType("user");
-									}}
-								>
-									Customer
-								</Tab>
-								<Tab
-									onClick={() => {
-										setType("seller");
-									}}
-								>
-									Seller
-								</Tab>
-							</TabList>
 							<TabPanels>
 								<TabPanel>
-									<Form {...form} onClose={onClose} handleInput={handleInput} />
-								</TabPanel>
-								<TabPanel>
-									<Form {...form} onClose={onClose} handleInput={handleInput} />
+									<FormControl>
+										<FormLabel>Email address</FormLabel>
+										<Input
+											type="email"
+											name="email"
+											value={form.email}
+											onChange={handleInput}
+										/>
+									</FormControl>
+									<FormControl>
+										<FormLabel>Password</FormLabel>
+
+										<InputGroup size="md">
+											<Input
+												pr="4.5rem"
+												type={show ? "text" : "password"}
+												placeholder="Enter password"
+												value={form.password}
+												name="password"
+												onChange={handleInput}
+											/>
+											<InputRightElement width="4.5rem">
+												<Button h="1.75rem" size="sm" onClick={handleClick}>
+													{show ? "Hide" : "Show"}
+												</Button>
+											</InputRightElement>
+										</InputGroup>
+									</FormControl>
 								</TabPanel>
 							</TabPanels>
 						</Tabs>
@@ -90,7 +101,7 @@ const Signup = ({ isOpen, onClose, setChangeValue }) => {
 							Close
 						</Button>
 						<Button variant="ghost" type="submit">
-							Signup
+							Login
 						</Button>
 					</ModalFooter>
 				</form>
@@ -99,4 +110,4 @@ const Signup = ({ isOpen, onClose, setChangeValue }) => {
 	);
 };
 
-export default Signup;
+export default Login;

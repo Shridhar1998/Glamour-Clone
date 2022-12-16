@@ -20,7 +20,7 @@ import Dropdow from "./Dropdow";
 const Nav2 = () => {
 
     return (
-        <Box margin="auto" w='70%' h='70px' display='flex' justifyContent='space-between'>
+    <Box margin="auto" w='70%' h='70px' display='flex' justifyContent='space-between'>
             <Flex width='100%'>
                 <Box>
                     <Link to='/'><Image w='230px' h='80px' src={logo} /></Link>

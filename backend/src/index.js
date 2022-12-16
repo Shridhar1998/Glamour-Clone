@@ -3,6 +3,7 @@ require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
+const bodyparser=require('body-parser');
 
 const connect = require("./congif/db");
 const PORT = process.env.PORT;
@@ -14,6 +15,8 @@ const cartRouter = require("./routes/cart.router");
 const app = express();
 app.use(express.json());
 app.use(cors());
+app.use(bodyparser.urlencoded({extended:false}))
+app.use(bodyparser.json());
 
 mongoose.set("strictQuery", false);
 

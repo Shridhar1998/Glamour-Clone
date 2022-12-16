@@ -1,18 +1,27 @@
 .paymentouterbox{
-    width: 80%;
-    border: 1px solid ;
-    padding: 5px;
+    width: 50%;
+    /* border: 1px solid ; */
+    /* padding: 5px; */
     display: flex;
     margin: auto;
 }
 
 .paymentoptions{
     width: 100%;
-    padding: 3px;
+    background-color: whitesmoke;
+    border: 1px solid whitesmoke;
+}
+.paymentoptions:hover{
+    /* background-color: gray; */
+}
+.accordoption{
+    /* border: 1px solid ; */
+    /* height: 40px; */
 }
 .upiouter{
 
 }
+
 .inputbox{
     width: 90%;
     display: flex;
@@ -36,4 +45,18 @@
     width: 90%;
     display: flex;
     margin: auto;
+}
+
+@media all and (min-width: 900px) and (max-width: 1200px) {
+    .paymentouterbox{
+        width: 70%;
+        margin: auto;
+    }
+}
+
+@media all and (min-width: 320px) and (max-width: 900px) {
+    .paymentouterbox{
+        width: 80%;
+        margin: auto;
+    }
 }

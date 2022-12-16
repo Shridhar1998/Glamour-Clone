@@ -1,9 +1,7 @@
 import {
   Box,
-  Button,
   Card,
   CardBody,
-  CardFooter,
   Center,
   Container,
   Divider,
@@ -11,27 +9,45 @@ import {
   HStack,
   Image,
   Stack,
-  Tag,
   Text,
   VStack,
   Wrap,
 } from "@chakra-ui/react";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./singleProd.module.css";
 import { AiFillStar } from "react-icons/ai";
 
 import { TfiFacebook } from "react-icons/tfi";
+import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { BsTwitter } from "react-icons/bs";
 import { SiLinkedin, SiMessenger } from "react-icons/si";
 import P_Button from "../../components/ProductPage/P_Button";
 import P_Description from "../../components/ProductPage/P_Description";
+import { useParams } from "react-router";
+import axios from "axios";
 
 function SingleProduct() {
+  const [prod, setProd] = useState({});
+  const { category, id } = useParams();
+
+  function handleGet() {
+    axios(`https://glamour.onrender.com/products/${category}/${id}`).then(
+      (res) => {
+        setProd(res.data[0]);
+        // console.log(res, "prod");
+      }
+    );
+  }
+  console.log(prod);
+
+  useEffect(() => {
+    handleGet();
+  }, []);
   return (
     <Container
       mt={"5rem"}
       className={styles.single_container}
-      maxW={{ base: "100%", md: "95%", lg: "80%" }}
+      maxW={{ base: "100%", md: "95%", lg: "80%", sm: "100%" }}
       minH="100vh"
     >
       <Center>
@@ -42,35 +58,43 @@ function SingleProduct() {
             variant="outline"
             h={{ md: "350px", sm: "auto", lg: "350px" }}
             w={{ sm: "100%", lg: "100%" }}
+            boxSizing="border-box"
           >
             <Stack
+              className={styles.scrollbar}
               direction={{ sm: "row", md: "column", base: "row", lg: "column" }}
-              // border={"1px solid red"}
-              w={{ base: "auto", sm: "95%", md: "100px", lg: "100px" }}
+              border={"1px solid red"}
+              w={{ base: "auto", sm: "90%", md: "100px", lg: "100px" }}
               h={{ base: "100px", sm: "100px", md: "350px", lg: "100%" }}
               overflow={"scroll"}
-              placeItems="center"
+              overflowX="scroll"
+              boxSizing="border-box"
+              // justifyContent={'space-around'}
             >
-              {Array(5)
-                .fill(0)
-                .map((e, i) => (
+              {prod?.product_colors
+                ?.map((e, i) => (
                   <Image
-                    src={`https://files.myglamm.com/site-images/200x200/POPxo-Makeup-Thrivin'-Mini-Nail-Kit-(2).jpg`}
+                    key={i}
+                    src={ `${prod.api_featured_image
+                    }`|| `https://files.myglamm.com/site-images/200x200/POPxo-Makeup-Thrivin'-Mini-Nail-Kit-(2).jpg`}
                     w="100px"
                     h={"100px"}
+                    border="1px solid lightgrey"
                   />
                 ))}
             </Stack>
 
             <Image
-              objectFit="cover"
-              maxW={{ base: "100%", sm: "95%" }}
-              src="https://files.myglamm.com/site-images/200x200/POPxo-Makeup-Thrivin'-Mini-Nail-Kit-(2).jpg"
+              boxSizing="border-box"
+              // border="2px solid red"
+              maxW={{ base: "90%", sm: "95%", md: "90%" }}
+              src={`${prod.image_link}`}
               alt="Caffe Latte"
             />
 
             <Stack
               overflowY={"scroll"}
+              className={styles.scrollbar}
               // border="1px solid red"
               w={{ lg: "600px" }}
             >
@@ -110,13 +134,11 @@ function SingleProduct() {
                     shades
                   </Text>
                   <Wrap>
-                    {Array(10)
-                      .fill(0)
-                      .map((e) => (
+                    {prod.product_colors?.map((e, i) => (
                         <Box
-                          border={"2px solid red"}
-                          bg="pink"
-                          w={"50px"}
+                          key={i}
+                          // border={"2px solid red"}
+                          bgColor={`${e.hex_value}`}                          w={"50px"}
                           h="50px"
                         ></Box>
                       ))}

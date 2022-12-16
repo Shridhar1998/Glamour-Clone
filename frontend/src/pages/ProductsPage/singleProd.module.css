@@ -1,9 +1,15 @@
-.single_container{
-    background:white;
-
-
+.single_container {
+  background: white;
 }
 .single_container * {
-    color: black;
+  color: black;
+}
 
+/* scrollbar hidden */
+.scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar{
+    overflow: scroll;
+    
 }

@@ -16,15 +16,29 @@ import {
   Text,
 } from "@chakra-ui/react";
 import React from "react";
+import { useEffect } from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 import Header_Gradient from "../../components/ProductPage/Header_Gradient";
 import styles from "./product.module.css";
 
 function ProductPage() {
   const [data, setData] = useState(Array(3).fill(0));
+  const [prod, setProd] = useState([]);
 
+  function handleGet() {
+    axios("https://glamour.onrender.com/products/concealer").then((res) => {
+      setProd(res.data);
+      // console.log(res, "prod");
+    });
+  }
+  console.log(prod);
+
+  useEffect(() => {
+    handleGet();
+  }, []);
 
   const SingleClick = () => {};
 
@@ -57,10 +71,9 @@ function ProductPage() {
         minChildWidth={{ base: "100%", md: "40%", lg: "30%" }}
         spacing="30px"
       >
-        {data.map((e, i) => (
-          <Link to="/singleprod">
+        {prod.map((e, i) => (
+          <Link key={i} to={`/${e.category}/${e._id}`}>
             <Card
-              key={i}
               maxW="sm"
               bg={"#ffff"}
               borderRadius={"2px"}
@@ -71,7 +84,7 @@ function ProductPage() {
               <CardBody>
                 <Center height={"300px"}>
                   <Image
-                    src="https://files.myglamm.com/site-images/800x800/staydefined_3.jpeg"
+                    src={e.image_link}
                     alt="Green double couch with wooden legs"
                     borderRadius="sm"
                     w={"85%"}
@@ -90,11 +103,15 @@ function ProductPage() {
                     size="sm"
                     color={"black"}
                     // fontSize='20px'
+                    textAlign="center"
+                    textTransform={"uppercase"}
+                    noOfLines="1"
                   >
-                    MYGLAMM SUPER SERUM COMPACT - 101N CREAM
+                    {e.name || "MYGLAMM SUPER SERUM COMPACT - 101N CREAM"}
                   </Heading>
-                  <Text color={"black"}>
-                    Skin-perfecting Compact Powder With Hyaluronic Acid
+                  <Text color={"black"} noOfLines="2" textAlign={"justify"}>
+                    {e.description ||
+                      " Skin-perfecting Compact Powder With Hyaluronic Acid"}
                   </Text>
                   <Flex color={"#111"} gap="0.5rem">
                     <Image
@@ -102,10 +119,12 @@ function ProductPage() {
                         "https://files.myglamm.com/site-images/original/plus-icon.png"
                       }
                     />
-                    <span>SHADES</span>
+                    <span>
+                      {e.product_colors.length} {"  "}SHADES
+                    </span>
                   </Flex>
                   <Text color="blue.600" fontSize="2xl">
-                    $450
+                    $ {e.price || 450}
                   </Text>
                 </Stack>
               </CardBody>

@@ -1,23 +1,30 @@
 import { Button, useDisclosure } from "@chakra-ui/react";
+import { useState } from "react";
+import Login from "./components/Login";
 import Signup from "./components/Signup";
 
-import Navbar from "./components/navbar/Navbar";
-import AllRoutes from "./routes/AllRoutes";
-import AddressForm from "./pages/AddressForm";
-import Cart from "./pages/Cart";
-import ProductPage from "./pages/ProductsPage/ProductPage";
-
 function App() {
-  return (
-    <div className="App">
-      <Navbar/>
-      <AllRoutes/>
+	const { isOpen, onOpen, onClose } = useDisclosure();
+	const [changeValue, setChangeValue] = useState(true);
 
-      {/* <Cart/> */}
-      {/* <AddressForm/> */}
-      
-    </div>
-  );
+	return (
+		<div className="App">
+			<Button onClick={onOpen}>Open Modal</Button>
+			{changeValue ? (
+				<Signup
+					isOpen={isOpen}
+					onClose={onClose}
+					setChangeValue={setChangeValue}
+				/>
+			) : (
+				<Login
+					isOpen={isOpen}
+					onClose={onClose}
+					setChangeValue={setChangeValue}
+				/>
+			)}
+		</div>
+	);
 }
 
 export default App;

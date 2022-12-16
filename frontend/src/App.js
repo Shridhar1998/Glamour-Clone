@@ -2,14 +2,16 @@ import { Button, useDisclosure } from "@chakra-ui/react";
 import { useState } from "react";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
-
+import AllRoutes from "./routes/AllRoutes";
+import Navbar from "./components/navbar/Navbar"
+import Footer from "./components/Footer";
 function App() {
-	const { isOpen, onOpen, onClose } = useDisclosure();
-	const [changeValue, setChangeValue] = useState(true);
+	// const { isOpen, onOpen, onClose } = useDisclosure();
+	// const [changeValue, setChangeValue] = useState(true);
 
 	return (
 		<div className="App">
-			<Button onClick={onOpen}>Open Modal</Button>
+			{/* <Button onClick={onOpen}>Open Modal</Button>
 			{changeValue ? (
 				<Signup
 					isOpen={isOpen}
@@ -22,7 +24,10 @@ function App() {
 					onClose={onClose}
 					setChangeValue={setChangeValue}
 				/>
-			)}
+			)} */}
+      <Navbar/>
+      <AllRoutes/>
+      <Footer/>
 		</div>
 	);
 }

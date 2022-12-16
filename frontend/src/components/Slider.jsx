@@ -11,9 +11,12 @@ import {
 import React from 'react'
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
-import {
-
-} from "@chakra-ui/react";
+import Myglam200 from "../Images/Myglam200.jpg"
+import wipeout600 from "../Images/wipeout600.jpg"
+import lipstick400 from "../Images/lipstick400.jpg"
+import lipstick800 from "../Images/lipstick800.jpg"
+import kajal100 from "../Images/kajal100.jpg"
+import lipcolur300 from "../Images/lipcolur300.jpg"
 const Slider = () => {
   const responsive = {
     LD: {
@@ -35,42 +38,42 @@ const Slider = () => {
   };
   const offer = [
     {
-      image: "https://files.myglamm.com/site-images/400x400/OTP1.jpg",
+      image: Myglam200,
       price: 200,
       name: "My Glamm Lipstick"
     },
     {
-      image: "https://files.myglamm.com/site-images/400x400/PPY1_1.jpg",
+      image: wipeout600,
       price: 400,
       name: "Lipstick"
     },
     {
-      image: "https://files.myglamm.com/site-images/400x400/Facewash_3.jpg",
+      image: lipstick400,
       price: 600,
       name: "WipEout"
     },
     {
-      image: "https://files.myglamm.com/site-images/400x400/MHML-(1).jpg",
+      image: lipstick800,
       price: 800,
       name: "Lipstick"
     },
     {
-      image: "https://files.myglamm.com/site-images/400x400/INDG1.jpg",
+      image: kajal100,
       price: 100,
       name: "Kajal"
     },
     {
-      image: "https://files.myglamm.com/site-images/400x400/Rare-(1).jpg",
+      image: lipcolur300,
       price: 300,
       name: "Lip Colur"
     },
     {
-      image: "https://files.myglamm.com/site-images/400x400/ENV1.jpg",
+      image: wipeout600,
       price: 500,
       name: "LIT Creamy"
     },
     {
-      image: "https://files.myglamm.com/site-images/400x400/MHML-(1).jpg",
+      image: lipstick800,
       price: 800,
       name: "Lipstick"
     }

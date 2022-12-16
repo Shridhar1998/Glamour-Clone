@@ -25,6 +25,7 @@ import styles from "./product.module.css";
 function ProductPage() {
   const [data, setData] = useState(Array(3).fill(0));
 
+
   const SingleClick = () => {};
 
   return (

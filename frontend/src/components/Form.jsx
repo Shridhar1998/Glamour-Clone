@@ -18,7 +18,7 @@ const Form = ({ handleInput, fullname, email, password, onClose }) => {
 				<FormLabel>Full Name</FormLabel>
 				<Input
 					type="text"
-					name="fullname"
+					name="name"
 					value={fullname}
 					onChange={handleInput}
 				/>

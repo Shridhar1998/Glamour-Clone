@@ -6,7 +6,8 @@ function P_Button({ text }) {
     <Button
       rounded={"none"}
       minW={"180px"}
-      mt={7}
+      mt={4}
+      mb={4}
       size={"md"}
       py={"6"}
       bgColor="black"

@@ -1,5 +1,8 @@
 import {
   Box,
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
   Card,
   CardBody,
   Center,
@@ -18,13 +21,14 @@ import styles from "./singleProd.module.css";
 import { AiFillStar } from "react-icons/ai";
 
 import { TfiFacebook } from "react-icons/tfi";
-import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
+
 import { BsTwitter } from "react-icons/bs";
 import { SiLinkedin, SiMessenger } from "react-icons/si";
 import P_Button from "../../components/ProductPage/P_Button";
 import P_Description from "../../components/ProductPage/P_Description";
 import { useParams } from "react-router";
 import axios from "axios";
+import P_video from "../../components/ProductPage/P_Video_Desc";
 
 function SingleProduct() {
   const [prod, setProd] = useState({});
@@ -45,25 +49,43 @@ function SingleProduct() {
   }, []);
   return (
     <Container
-      mt={"5rem"}
+      mt={"1rem"}
       className={styles.single_container}
       maxW={{ base: "100%", md: "95%", lg: "80%", sm: "100%" }}
       minH="100vh"
     >
-      <Center>
+      <Center p={"0.5rem 0"}>
+        <Breadcrumb>
+          <BreadcrumbItem>
+            <BreadcrumbLink href="/">Home</BreadcrumbLink>
+          </BreadcrumbItem>
+
+          <BreadcrumbItem>
+            <BreadcrumbLink href={`/${category}`}>{category}</BreadcrumbLink>
+          </BreadcrumbItem>
+          <BreadcrumbItem>
+            <BreadcrumbLink href="#">{prod.brand}</BreadcrumbLink>
+          </BreadcrumbItem>
+          <BreadcrumbItem>
+            <BreadcrumbLink href="#">{prod.product_type}</BreadcrumbLink>
+          </BreadcrumbItem>
+        </Breadcrumb>
+      </Center>
+      <Divider bgColor={"lightgrey"} />
+      <Center mt="2rem ">
         <VStack>
           <Card
             direction={{ base: "column", md: "row", sm: "column" }}
             overflow="hidden"
             variant="outline"
-            h={{ md: "350px", sm: "auto", lg: "350px" }}
+            h={{ md: "350px", sm: "auto", lg: "400px" }}
             w={{ sm: "100%", lg: "100%" }}
             boxSizing="border-box"
           >
             <Stack
               className={styles.scrollbar}
               direction={{ sm: "row", md: "column", base: "row", lg: "column" }}
-              border={"1px solid red"}
+              // border={"1px solid red"}
               w={{ base: "auto", sm: "90%", md: "100px", lg: "100px" }}
               h={{ base: "100px", sm: "100px", md: "350px", lg: "100%" }}
               overflow={"scroll"}
@@ -71,17 +93,18 @@ function SingleProduct() {
               boxSizing="border-box"
               // justifyContent={'space-around'}
             >
-              {prod?.product_colors
-                ?.map((e, i) => (
-                  <Image
-                    key={i}
-                    src={ `${prod.api_featured_image
-                    }`|| `https://files.myglamm.com/site-images/200x200/POPxo-Makeup-Thrivin'-Mini-Nail-Kit-(2).jpg`}
-                    w="100px"
-                    h={"100px"}
-                    border="1px solid lightgrey"
-                  />
-                ))}
+              {prod?.product_colors?.map((e, i) => (
+                <Image
+                  key={i}
+                  src={
+                    `${prod.api_featured_image}` ||
+                    `https://files.myglamm.com/site-images/200x200/POPxo-Makeup-Thrivin'-Mini-Nail-Kit-(2).jpg`
+                  }
+                  w="100px"
+                  h={"100px"}
+                  border="1px solid lightgrey"
+                />
+              ))}
             </Stack>
 
             <Image
@@ -94,20 +117,28 @@ function SingleProduct() {
 
             <Stack
               overflowY={"scroll"}
-              className={styles.scrollbar}
+              // className={styles.scrollbar}
               // border="1px solid red"
               w={{ lg: "600px" }}
             >
               <CardBody>
                 <Heading size="md">
-                  POPXO MAKEUP - THRIVIN’ MINI NAIL KIT
+                  {prod?.name || "POPXO MAKEUP - THRIVIN’ MINI NAIL KIT"}
                 </Heading>
 
                 <Text py="2" color={"#909090"}>
-                  Mini Nail Polish set with 5 chip-resistant glitter nail
-                  polishes
+                  {prod?.description ||
+                    " Mini Nail Polish set with 5 chip-resistant glitter nail polishes"}
                 </Text>
                 <HStack m={"0.5rem 0"} fontSize={"lg"}>
+                  <Text fontWeight={"bold"}>Type :</Text>
+                  <Text>{prod?.product_type || "ACMA"}</Text>
+                </HStack>
+                <HStack m={"0.5rem 0"} fontSize={"lg"}>
+                  <Text fontWeight={"bold"}>Category :</Text>
+                  <Text>{prod?.category || "Makeup"}</Text>
+                </HStack>
+                <HStack m={"1rem 0"} fontSize={"lg"}>
                   <Text fontWeight={"600"}>5 </Text>
                   <Text>
                     <AiFillStar color="pink" />
@@ -135,13 +166,14 @@ function SingleProduct() {
                   </Text>
                   <Wrap>
                     {prod.product_colors?.map((e, i) => (
-                        <Box
-                          key={i}
-                          // border={"2px solid red"}
-                          bgColor={`${e.hex_value}`}                          w={"50px"}
-                          h="50px"
-                        ></Box>
-                      ))}
+                      <Box
+                        key={i}
+                        // border={"2px solid red"}
+                        bgColor={`${e.hex_value}`}
+                        w={"50px"}
+                        h="50px"
+                      ></Box>
+                    ))}
                   </Wrap>
 
                   {/* Description */}
@@ -151,8 +183,9 @@ function SingleProduct() {
               </CardBody>
             </Stack>
           </Card>
+          <Box m="3rem"></Box>
           {/* icons */}
-          <Box w={{ lg: "200px" }}>
+          <Box w={{ lg: "200px" }} mt={6}>
             <HStack placeContent={"left "} spacing="1rem" m="1rem 0">
               <TfiFacebook fontSize={"25px"} />
               <BsTwitter fontSize={"25px"} />
@@ -162,6 +195,13 @@ function SingleProduct() {
           </Box>
         </VStack>
       </Center>
+
+      {/* video description */}
+      
+        <Box>
+          <P_video />
+        </Box>
+      
     </Container>
   );
 }

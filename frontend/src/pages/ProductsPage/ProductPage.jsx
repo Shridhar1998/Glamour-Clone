@@ -25,7 +25,7 @@ import Header_Gradient from "../../components/ProductPage/Header_Gradient";
 import styles from "./product.module.css";
 
 function ProductPage() {
-  const [data, setData] = useState(Array(3).fill(0));
+  const [data, setData] = useState(Array(8).fill(0));
   const [prod, setProd] = useState([]);
 
   function handleGet() {
@@ -67,11 +67,12 @@ function ProductPage() {
       </Box>
       {/* header Gradient */}
 
+
       <SimpleGrid
         minChildWidth={{ base: "100%", md: "40%", lg: "30%" }}
         spacing="30px"
       >
-        {prod.map((e, i) => (
+        {(prod || data).map((e, i) => (
           <Link key={i} to={`/${e.category}/${e._id}`}>
             <Card
               maxW="sm"
@@ -84,7 +85,7 @@ function ProductPage() {
               <CardBody>
                 <Center height={"300px"}>
                   <Image
-                    src={e.image_link}
+                    src={e.image_link||"https://files.myglamm.com/site-images/800x800/staydefined_3.jpeg"  }
                     alt="Green double couch with wooden legs"
                     borderRadius="sm"
                     w={"85%"}
@@ -133,6 +134,8 @@ function ProductPage() {
           </Link>
         ))}
       </SimpleGrid>
+
+
     </Container>
   );
 }

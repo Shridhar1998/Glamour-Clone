@@ -15,12 +15,14 @@
 }
     
 .dropbtn {
-    color: black;
-    padding: 16px;
-    font-size: 13px;
-    cursor: pointer;
-    border: none;
-  }
+  color: black;
+  padding: 15px;
+  font-size: 14px;
+  cursor: pointer;
+  border: none;
+  font-family: sans-serif;
+  font-weight: 600;
+}
   .dropbtn:hover{
   border-color: #feb0a9;
     padding-bottom: value;

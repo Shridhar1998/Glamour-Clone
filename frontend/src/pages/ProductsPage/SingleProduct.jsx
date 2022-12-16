@@ -19,7 +19,7 @@ import {
 import React from "react";
 import styles from "./singleProd.module.css";
 import { AiFillStar } from "react-icons/ai";
-import { FcGoogle } from "react-icons/fc";
+
 import { TfiFacebook } from "react-icons/tfi";
 import { BsTwitter } from "react-icons/bs";
 import { SiLinkedin, SiMessenger } from "react-icons/si";
@@ -71,7 +71,7 @@ function SingleProduct() {
 
             <Stack
               overflowY={"scroll"}
-              border="1px solid red"
+              // border="1px solid red"
               w={{ lg: "600px" }}
             >
               <CardBody>
@@ -116,8 +116,8 @@ function SingleProduct() {
                         <Box
                           border={"2px solid red"}
                           bg="pink"
-                          w={"100px"}
-                          h="100px"
+                          w={"50px"}
+                          h="50px"
                         ></Box>
                       ))}
                   </Wrap>
@@ -129,6 +129,7 @@ function SingleProduct() {
               </CardBody>
             </Stack>
           </Card>
+          {/* icons */}
           <Box w={{ lg: "200px" }}>
             <HStack placeContent={"left "} spacing="1rem" m="1rem 0">
               <TfiFacebook fontSize={"25px"} />

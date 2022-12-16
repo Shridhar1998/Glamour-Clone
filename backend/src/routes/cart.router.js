@@ -20,15 +20,15 @@ app.post("/:id", async(req,res)=> {//user ki id
     const {id} = req.params;
     const {productId} = req.body;
     try{
-        const isItemExist = CartModel.find({productId: productId});
-        if(isItemExist){
-            return res.status(201).send("item already exits");
-        }
-        else{
+        // const isItemExist = CartModel.find({productId: productId});
+        // if(isItemExist){
+        //     return res.status(201).send("item already exits");
+        // }
+        // else{
             const item = new CartModel({...req.body,  userId: id})
             await item.save();
             return res.status(200).send(item);
-        }
+        // }
     }catch(e){
         return res.status(401).send(e);
     }

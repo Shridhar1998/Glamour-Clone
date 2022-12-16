@@ -11,8 +11,9 @@ const refreshToken = process.env.REFRESHTOKEN;
 const app = express.Router();
 
 
-app.get("/", (req,res)=> {
-    return res.send("user url")
+app.get("/", async (req,res)=> {
+    const users = await UserModel.find();
+    return res.send(users)
 })
 
 app.post("/signup", async(req,res)=> {

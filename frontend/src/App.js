@@ -1,10 +1,14 @@
 import { Button, useDisclosure } from "@chakra-ui/react";
 import { useState } from "react";
 import Login from "./components/Login";
+import Navbar from "./components/navbar/Navbar";
 import Signup from "./components/Signup";
 import AllRoutes from "./routes/AllRoutes";
-import Navbar from "./components/navbar/Navbar"
+
 import Footer from "./components/Footer";
+
+
+
 function App() {
 	// const { isOpen, onOpen, onClose } = useDisclosure();
 	// const [changeValue, setChangeValue] = useState(true);
@@ -25,9 +29,11 @@ function App() {
 					setChangeValue={setChangeValue}
 				/>
 			)} */}
+
       <Navbar/>
       <AllRoutes/>
       <Footer/>
+
 		</div>
 	);
 }

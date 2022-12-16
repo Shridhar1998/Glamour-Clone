@@ -7,8 +7,10 @@ import {
     Text,
     VStack,
 
+    
 } from '@chakra-ui/react'
- import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
+
 import "./Nav.css"
 
 const Nav3 = () => {
@@ -22,7 +24,9 @@ const Nav3 = () => {
 
             {/*Makeup*/}
             <Box className="dropdown">
-                <Link to='/'><Box fontFamily="Roboto" className="dropbtn">MAKEUP</Box></Link>
+
+                <Link to='/makeup'><Box fontFamily="Roboto" className="dropbtn">MAKEUP</Box></Link>
+
                 <Box className="dropdown-content"  >
                     <Box w='600px' >
                         <Box w='600px'  >

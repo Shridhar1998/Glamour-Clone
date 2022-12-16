@@ -5,9 +5,13 @@ import Navbar from "./components/navbar/Navbar";
 import Signup from "./components/Signup";
 import AllRoutes from "./routes/AllRoutes";
 
+import Footer from "./components/Footer";
+
+
+
 function App() {
-	const { isOpen, onOpen, onClose } = useDisclosure();
-	const [changeValue, setChangeValue] = useState(true);
+	// const { isOpen, onOpen, onClose } = useDisclosure();
+	// const [changeValue, setChangeValue] = useState(true);
 
 	return (
 		<div className="App">
@@ -25,9 +29,11 @@ function App() {
 					setChangeValue={setChangeValue}
 				/>
 			)} */}
-			<Navbar/>
-			<AllRoutes/>
-			
+
+      <Navbar/>
+      <AllRoutes/>
+      <Footer/>
+
 		</div>
 	);
 }

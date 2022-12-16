@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import Login from "../components/Login";
@@ -18,5 +19,6 @@ const AllRoutes = () => {
 		</Routes>
 	);
 };
+
 
 export default AllRoutes;

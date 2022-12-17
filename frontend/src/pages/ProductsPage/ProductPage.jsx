@@ -18,29 +18,35 @@ import {
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 
 import Header_Gradient from "../../components/ProductPage/Header_Gradient";
 import styles from "./product.module.css";
+import { dummydata } from "./data";
 
 function ProductPage() {
   const [data, setData] = useState(Array(8).fill(0));
   const [prod, setProd] = useState([]);
+  const { category } = useParams();
+ 
 
   function handleGet() {
-    axios("https://glamour.onrender.com/products/concealer").then((res) => {
+    axios(`https://glamour.onrender.com/products/${category}`).then((res) => {
       setProd(res.data);
       // console.log(res, "prod");
+      localStorage.setItem("data",JSON.stringify(res.data))
     });
   }
   console.log(prod);
+  useEffect(()=>{
+    setProd(dummydata)
+
+  },[])
 
   useEffect(() => {
     handleGet();
-  }, []);
-
-  const SingleClick = () => {};
+  }, [category]);
 
   return (
     <Container
@@ -56,17 +62,16 @@ function ProductPage() {
           </BreadcrumbItem>
 
           <BreadcrumbItem>
-            <BreadcrumbLink href="/makeup">Makeup</BreadcrumbLink>
+            <BreadcrumbLink href="/products/lipstick">Makeup</BreadcrumbLink>
           </BreadcrumbItem>
         </Breadcrumb>
       </Center>
       <Divider bgColor={"lightgrey"} />
       {/* header Gradient */}
       <Box m={"2rem 0"}>
-        <Header_Gradient name={"MAKEUP"} size={"40px"} />
+        <Header_Gradient name={category} size={"40px"} />
       </Box>
       {/* header Gradient */}
-
 
       <SimpleGrid
         minChildWidth={{ base: "100%", md: "40%", lg: "30%" }}
@@ -80,12 +85,14 @@ function ProductPage() {
               borderRadius={"2px"}
               boxShadow="rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px"
               _hover={{ boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px" }}
-              onClick={() => SingleClick}
             >
               <CardBody>
                 <Center height={"300px"}>
                   <Image
-                    src={e.image_link||"https://files.myglamm.com/site-images/800x800/staydefined_3.jpeg"  }
+                    src={
+                      e.image_link ||
+                      "https://files.myglamm.com/site-images/800x800/staydefined_3.jpeg"
+                    }
                     alt="Green double couch with wooden legs"
                     borderRadius="sm"
                     w={"85%"}
@@ -134,8 +141,6 @@ function ProductPage() {
           </Link>
         ))}
       </SimpleGrid>
-
-
     </Container>
   );
 }

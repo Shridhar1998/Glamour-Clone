@@ -1,14 +1,11 @@
 import { Box, List, ListItem, Text, UnorderedList } from "@chakra-ui/react";
 import React from "react";
 
-function P_Dummy() {
+function P_Dummy({how}) {
   return (
     <Box>
       <Box fontWeight={"semibold"} textAlign="justify">
-        Whether you’re channelling your inner Beyoncé or Sasha Fierce there’s a
-        shade for every person and their alter egos! The LIT 2 in 1 Liquid Matte
-        Lipstick by MyGlamm gives you soft, kiss-proof lips, no smudges or
-        transfers, just pure, intense colour!
+        {how}
       </Box>
       <Box m={"1rem 0"}>
         <Text m="0.5rem 0" fontWeight={"bold"}>

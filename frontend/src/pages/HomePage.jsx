@@ -19,6 +19,7 @@ import covers from "../Images/covers.png"
 
 
 const HomePage = () => {
+	
   const offer = [
     {
       image: off55,

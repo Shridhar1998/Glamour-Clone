@@ -10,14 +10,17 @@ import {
 } from "@chakra-ui/react";
 import axios from "axios";
 import React, { useState } from "react";
+import { useEffect } from "react";
 import { getItem } from "../../redux/localStorage";
 
 const UserDashboard = () => {
 	const user = getItem("userid");
 	const [data, setData] = useState([]);
-	axios
-		.get("https://glamour.onrender.com/user")
-		.then((res) => setData(res.data));
+	useEffect(() => {
+		axios
+			.get("https://glamour.onrender.com/user")
+			.then((res) => setData(res.data));
+	}, []);
 
 	return (
 		<Card

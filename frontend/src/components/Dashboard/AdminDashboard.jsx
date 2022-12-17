@@ -16,11 +16,18 @@ import {
 	Flex,
 } from "@chakra-ui/react";
 import axios from "axios";
+import { getItem } from "../../redux/localStorage";
 
 const AdminDashboard = () => {
+	const token = getItem("token");
 	const [data, setData] = useState([]);
+
 	axios
-		.get("https://glamour.onrender.com/user")
+		.get("https://glamour.onrender.com/user", {
+			headers: {
+				authorization: token,
+			},
+		})
 		.then((res) => setData(res.data));
 
 	return (

@@ -22,7 +22,6 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { loginApi } from "../redux/Auth/auth.actions";
-import { getItem } from "../redux/localStorage";
 
 const Login = ({ isOpen, onClose, setChangeValue }) => {
 	const initState = {

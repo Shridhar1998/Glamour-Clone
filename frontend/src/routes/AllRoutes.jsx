@@ -8,6 +8,7 @@ import Checkout from "../pages/Checkout";
 import HomePage from "../pages/HomePage";
 import ProductPage from "../pages/ProductsPage/ProductPage";
 import SingleProduct from "../pages/ProductsPage/SingleProduct";
+import PostProducts from "../pages/Seller/PostProducts";
 
 const AllRoutes = () => {
 	return (
@@ -15,14 +16,14 @@ const AllRoutes = () => {
 			<Route path="/" element={<HomePage />} />
 			<Route path="/login" element={<Login />} />
 			<Route path="/signup" element={<Signup />} />
+			<Route path="/addproduct" element={<PostProducts />} />
 
 			<Route path="/cart" element={<Cart />} />
 
-
 			<Route path="/makeup" element={<ProductPage />} />
 
-			<Route path="/products/:category" element={<ProductPage/>} />
-			<Route path="/:category/:id" element={<SingleProduct/>} />
+			<Route path="/products/:category" element={<ProductPage />} />
+			<Route path="/:category/:id" element={<SingleProduct />} />
 
 			<Route path="" />
 

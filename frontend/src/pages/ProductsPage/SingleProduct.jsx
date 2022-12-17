@@ -61,13 +61,13 @@ function SingleProduct() {
           </BreadcrumbItem>
 
           <BreadcrumbItem>
-            <BreadcrumbLink href={`/${category}`}>{category}</BreadcrumbLink>
+            <BreadcrumbLink textTransform={'capitalize'} href={`/${category}`}>{category}</BreadcrumbLink>
           </BreadcrumbItem>
           <BreadcrumbItem>
-            <BreadcrumbLink href="#">{prod.brand}</BreadcrumbLink>
+            <BreadcrumbLink textTransform={'capitalize'} href="#">{prod.brand}</BreadcrumbLink>
           </BreadcrumbItem>
           <BreadcrumbItem>
-            <BreadcrumbLink href="#">{prod.product_type}</BreadcrumbLink>
+            <BreadcrumbLink textTransform={'capitalize'} href="#">{prod.product_type}</BreadcrumbLink>
           </BreadcrumbItem>
         </Breadcrumb>
       </Center>
@@ -149,10 +149,10 @@ function SingleProduct() {
 
                 {/* price */}
                 <HStack m={"0.5rem 0 0.1rem 0"}>
-                  <Text fontSize={"xl"}>₹ 400</Text>
+                  <Text fontSize={"xl"}>{ prod?.price_sign||"$"} {prod?.price || 6.0}</Text>
                   <Text textDecoration={"line-through"} color="grey">
                     {" "}
-                    ₹ 547
+                    $ {+prod?.price+4.3 || 6.0}
                   </Text>
                 </HStack>
                 <Text mb={"1rem"}>(MRP incl. of all taxes)</Text>
@@ -177,7 +177,7 @@ function SingleProduct() {
                   </Wrap>
 
                   {/* Description */}
-                  <P_Description />
+                  <P_Description {...prod} />
                   {/* Description */}
                 </Stack>
               </CardBody>

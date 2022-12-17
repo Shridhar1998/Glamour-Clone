@@ -11,11 +11,13 @@ import {
 import { getItem, setItem } from "../localStorage";
 
 const initialState = {
-	username: "",
 	token: getItem("token") || "",
 	isAuth: false,
 	isLoading: false,
 	isError: false,
+	userid: getItem("userid") || "",
+	refreshToken: getItem("refreshToken") || "",
+	username: getItem("user") || "",
 };
 
 export const reducer = (state = initialState, { type, payload }) => {
@@ -53,6 +55,10 @@ export const reducer = (state = initialState, { type, payload }) => {
 		}
 
 		case LOGOUT: {
+			setItem("token", "");
+			setItem("user", "");
+			setItem("refreshToken", "");
+			setItem("userid", "");
 			return { ...state, isAuth: false };
 		}
 

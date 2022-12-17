@@ -7,8 +7,6 @@ import AllRoutes from "./routes/AllRoutes";
 
 import Footer from "./components/Footer";
 
-
-
 function App() {
 	const { isOpen, onOpen, onClose } = useDisclosure();
 	const [changeValue, setChangeValue] = useState(true);
@@ -28,14 +26,11 @@ function App() {
 					onClose={onClose}
 					setChangeValue={setChangeValue}
 				/>
+			)}
 
-			)} 
-
-      <Navbar/>
+			{/* <Navbar/>
       <AllRoutes/>
-      <Footer/>
-
-
+      <Footer/> */}
 		</div>
 	);
 }

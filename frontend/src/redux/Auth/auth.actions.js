@@ -25,7 +25,10 @@ const loginApi = (payload) => (dispatch) => {
 	return axios
 		.post("https://glamour.onrender.com/user/login", { ...payload })
 		.then((res) => {
-			setItem("userId", res.data.userId);
+			setItem("token", res.data.token);
+			setItem("user", res.data.user);
+			setItem("refreshToken", res.data.refreshToken);
+			setItem("userid", res.data.id);
 			dispatch({ type: LOGIN_SUCCESS });
 			// localStorage.setItem("token", res.data.token);
 		})

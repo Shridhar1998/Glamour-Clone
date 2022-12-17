@@ -1,7 +1,7 @@
 import { Box, Text } from "@chakra-ui/react";
 import React from "react";
 import { useState } from "react";
-import "./addressform.css";
+import "./styles/addressform.css";
 // import {Link} from 'react-router-dom'
 
 const AddressForm = () => {

@@ -1,7 +1,6 @@
 import {
 	Button,
 	Flex,
-	Image,
 	Link,
 	Modal,
 	ModalBody,
@@ -67,20 +66,20 @@ const Signup = ({ isOpen, onClose, setChangeValue }) => {
 					<ModalHeader>Signup</ModalHeader>
 					<ModalCloseButton />
 					<ModalBody>
-						<Flex gap="3" pb="4">
-							Already have an account
+						<Flex gap="2" pb="4">
+							Already have an account?
 							<Link
 								onClick={() => {
 									setChangeValue(false);
 								}}
-								variant="unstyled"
+								variant="link"
 							>
 								{" "}
 								Login
 							</Link>
 						</Flex>
-						<Tabs isFitted variant="enclosed">
-							<TabList mb="1em">
+						<Tabs isFitted variant="enclosed" colorScheme={"pink"}>
+							<TabList>
 								<Tab
 									onClick={() => {
 										setForm({ ...form, role: "user" });
@@ -105,18 +104,10 @@ const Signup = ({ isOpen, onClose, setChangeValue }) => {
 								</TabPanel>
 							</TabPanels>
 						</Tabs>
-						<Flex justifyContent={"space-around"}>
-							<Link>
-								<Image src="https://img.shields.io/badge/Google-4285F4?style=for-the-badge&logo=google&logoColor=white" />
-							</Link>
-							<Link>
-								<Image src="https://img.shields.io/badge/GITHUB-181717?style=for-the-badge&logo=github&logoColor=white" />
-							</Link>
-						</Flex>
 					</ModalBody>
 
 					<ModalFooter>
-						<Button colorScheme="blue" mr={3} onClick={onClose}>
+						<Button colorScheme="pink" mr={3} onClick={onClose}>
 							Close
 						</Button>
 						<Button variant="ghost" type="submit">

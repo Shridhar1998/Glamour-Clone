@@ -1,7 +1,11 @@
 require("dotenv").config();
 
 const express = require("express");
+const jwt = require("jsonwebtoken");
+
+const secrectToken = process.env.SECRECTTOKEN;
 const ProductModel = require("../models/product.model");
+const sellerAuthMiddleware = require("../middleware/sellerAuth");
 
 const app = express.Router();
 
@@ -53,6 +57,18 @@ app.get("/:category/:sortType/sort", async(req,res)=> {
         }
     }catch(e){
         return res.send("hamse na hoga bhaiya");
+    }
+})
+
+app.post("/", sellerAuthMiddleware, async(req,res)=> { //seller add product to particular category
+    const token = req.headers["authorization"];
+    const data = jwt.decode(token, secrectToken);
+    try{
+        const product = new ProductModel({...req.body, userId: data.id});
+        await product.save();
+        return res.status(200).send(product);
+    }catch(e){
+        return res.status(400).send(e);
     }
 })
 

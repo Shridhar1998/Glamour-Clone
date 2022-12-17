@@ -137,7 +137,7 @@ const Footer = () => {
                 </Flex>
             </Box>
             <Flex display={{base:"block",sm:"block",md:"Flex"}} justifyContent={"space-around"}>
-                <Stack align={'flex-start'}>
+                <Stack align={'flex-start'} marginTop={"23px"}>
                     <Stack direction={'row'}>
                         <Input
                             placeholder={'Your email address'}
@@ -152,7 +152,8 @@ const Footer = () => {
                             bg={useColorModeValue('blackAlpha.900', 'blackAlpha.800')}
                             color={useColorModeValue('white', 'gray.800')}
                             _hover={{
-                                bg: 'green.600',
+                                bg: 'rgb(254,232,232)',
+                                color:"black"
                             }}
                             aria-label="Subscribe"
                             w={{base:"110px",sm:"150px",md:"180px"}}
@@ -160,11 +161,11 @@ const Footer = () => {
                     </Stack>
                 </Stack>
 
-                <Stack direction={'row'}>
+                <Stack direction={'row'} marginTop={"32px"}>
                     <Box><Text>Stay Connected</Text></Box>
                     <Box className='vline'></Box>
                     <Box>
-                        <Stack direction={'row'} spacing={6}>
+                        <Stack  marginTop={"5px"} direction={'row'} spacing={6}>
 
                             <FaTwitter />
 

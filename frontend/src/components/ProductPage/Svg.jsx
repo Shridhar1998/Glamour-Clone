@@ -3,7 +3,7 @@ import React from 'react'
 
 function Svg() {
   return (
-   <Text w={'160px'} borderRadius='2rem'  bg={"pink"}  >
+   <Box w={'160px'} borderRadius='2rem'  bg={"pink"}  >
     <svg xmlns="http://www.w3.org/2000/svg" width="155" height="28">
         <g fill="none" fill-rule="evenodd">
           <path fill="var(--color1)" d="M1 8h146v13H1z" opacity="0.316"></path>
@@ -14,7 +14,7 @@ function Svg() {
           ></path>
         </g>
       </svg>
-   </Text>
+   </Box>
   )
 }
 

@@ -11,6 +11,7 @@ import {
   Flex,
   Heading,
   Image,
+  Select,
   SimpleGrid,
   Stack,
   Text,
@@ -29,20 +30,18 @@ function ProductPage() {
   const [data, setData] = useState(Array(8).fill(0));
   const [prod, setProd] = useState([]);
   const { category } = useParams();
- 
 
   function handleGet() {
     axios(`https://glamour.onrender.com/products/${category}`).then((res) => {
       setProd(res.data);
       // console.log(res, "prod");
-      localStorage.setItem("data",JSON.stringify(res.data))
+      localStorage.setItem("data", JSON.stringify(res.data));
     });
   }
   console.log(prod);
-  useEffect(()=>{
-    setProd(dummydata)
-
-  },[])
+  useEffect(() => {
+    setProd(dummydata);
+  }, []);
 
   useEffect(() => {
     handleGet();
@@ -72,6 +71,12 @@ function ProductPage() {
         <Header_Gradient name={category} size={"40px"} />
       </Box>
       {/* header Gradient */}
+      <Box m={'1rem 0'}>
+        <Select placeholder="Select option" variant='filled' w={'xs'} >
+          <option value="lth">Low to High</option>
+          <option value="htl">High to Low</option>
+        </Select>
+      </Box>
 
       <SimpleGrid
         minChildWidth={{ base: "100%", md: "40%", lg: "30%" }}
@@ -128,7 +133,7 @@ function ProductPage() {
                       }
                     />
                     <span>
-                      {e.product_colors.length} {"  "}SHADES
+                      {e.product_colors?.length} {"  "}SHADES
                     </span>
                   </Flex>
                   <Text color="blue.600" fontSize="2xl">

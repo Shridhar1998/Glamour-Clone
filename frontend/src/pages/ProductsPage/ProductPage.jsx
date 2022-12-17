@@ -31,8 +31,10 @@ function ProductPage() {
   const [prod, setProd] = useState([]);
   const { category } = useParams();
   const [sortBy, setSortBy] = useState("asc");
+  const [page,setPage]=useState(2)
   function handleGet() {
-    axios(`https://glamour.onrender.com/products/${category}?page=${3}`).then((res) => {
+    
+    axios(`https://glamour.onrender.com/products/${category}?page=${page}`).then((res) => {
       setProd(res.data);
       // console.log(res, "prod");
       localStorage.setItem("data", JSON.stringify(res.data));
@@ -59,6 +61,9 @@ function ProductPage() {
   console.log(prod);
   useEffect(() => {
     setProd(dummydata);
+    if(category=="gel"){
+setPage(1)
+    }
   }, []);
 
   useEffect(() => {

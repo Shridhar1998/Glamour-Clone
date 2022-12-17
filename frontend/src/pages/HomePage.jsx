@@ -2,23 +2,38 @@ import { AspectRatio, Box, Flex, Image, Text } from '@chakra-ui/react'
 import React from 'react'
 import Slider from '../components/Slider';
 import "./Homepage.css"
+import india from "../Images/india.gif"
+import GoodLife from "../Images/GoodLife.png"
+import Biggest from "../Images/Biggest.jpg"
+import off55 from "../Images/off55.jpg"
+import get100 from "../Images/get100.jpg"
+import picA from "../Images/picA.jpg"
+import pic399 from "../Images/pic399.jpg"
+import Best from "../Images/Best.jpg"
+import beauty from "../Images/beauty.jpg"
+import winbig from "../Images/winbig.png"
+import wedding from "../Images/wedding.png"
+import giftguide from "../Images/giftguide.png"
+import beware from "../Images/beware.png"
+import covers from "../Images/covers.png"
+
+
 const HomePage = () => {
   const offer = [
     {
-      image: "https://files.myglamm.com/site-images/original/16-700x488.jpg",
+      image: off55,
       name: "Get 55% off"
     },
     {
-      image: "https://files.myglamm.com/site-images/original/17--700x488.jpg"
-      ,
+      image: get100,
       name: "Get 100% off"
     },
     {
-      image: "https://files.myglamm.com/site-images/original/18-700x488.jpg",
+      image: picA,
       name: "Product at RS 299"
     },
     {
-      image: "https://files.myglamm.com/site-images/original/19-700x488.jpg",
+      image: pic399,
       name: "Product at RS 399"
     }
 
@@ -26,11 +41,11 @@ const HomePage = () => {
 
   const offer2 = [
     {
-      image: "https://files.myglamm.com/site-images/original/TGLF-December-Slot-Machine-1-1_2.png",
+      image: winbig,
       name: "Win big at Slot Machine"
     },
     {
-      image: "https://files.myglamm.com/site-images/original/TGLF-December-Slot-Machine-1-1_2.png"
+      image: winbig
       ,
       name: "Total Makeover"
     }
@@ -39,11 +54,11 @@ const HomePage = () => {
 
   const offer3 = [
     {
-      image: "https://files.myglamm.com/site-images/original/cu700x488.png",
+      image: wedding,
       name: "Wedding Store"
     },
     {
-      image: "https://files.myglamm.com/site-images/original/700x488_12.png"
+      image: giftguide
       ,
       name: "Gifting Store"
     }
@@ -52,20 +67,21 @@ const HomePage = () => {
   return (
     <Box bg={"rgb(244,244,244)"}>
       <Box mt={1}>
-        <Image src='https://files.myglamm.com/site-images/original/Number-1-logo-strip-3360-x-279.gif' />
+        <Image src={india} />
       </Box>
       <Box mt={4}>
-        <Image src='https://files.myglamm.com/site-images/original/Homepage-desktop-1920x527.png' />
+        <Image src={GoodLife} />
       </Box>
       <Box mt={8} >
-        <Image h={190} w={"100%"} src='https://files.myglamm.com/site-images/original/Sectional-Headers-2_3.jpg' />
+        <Image h={190} w={"100%"} src={Biggest} />
       </Box>
       <Box>
         <Box margin="auto" mt={7} >
           <Flex className="flexBoxForHome" direction={["column", "column", "column", "row"]}>
-            {offer.map((e) => {
+            {offer.map((e,i) => {
               return (
                 <Box
+                  key={i}
                   w={["300px", "600px", "600px", "400px"]}
                   bgPosition="center"
                   bgRepeat="no-repeat"
@@ -98,7 +114,7 @@ const HomePage = () => {
         </Box>
       </Box>
       <Box mt={10} >
-        <Image h={190} w={"100%"} src='https://files.myglamm.com/site-images/original/bestsellers_6.jpg' />
+        <Image h={190} w={"100%"} src={Best} />
       </Box>
       <Box>
       <Slider/>
@@ -109,9 +125,10 @@ const HomePage = () => {
       <Box>
         <Box margin="auto" mt={7} >
           <Flex className="flexBoxForHome" direction={["column", "column", "column", "row"]}>
-            {offer2.map((e) => {
+            {offer2.map((e,i) => {
               return (
                 <Box
+                  key={i}
                   w={["300px", "600px", "600px", "400px"]}
                   bgPosition="center"
                   bgRepeat="no-repeat"
@@ -144,14 +161,15 @@ const HomePage = () => {
         </Box>
       </Box>
       <Box mt={10} >
-        <Image w={"100%"} src='https://files.myglamm.com/site-images/original/spn3360x279_1.jpg' />
+        <Image w={"100%"} src={beauty} />
       </Box>
       <Box>
         <Box margin="auto" mt={7} >
           <Flex className="flexBoxForHome" direction={["column", "column", "column", "row"]}>
-            {offer3.map((e) => {
+            {offer3.map((e,i) => {
               return (
                 <Box
+                  key={i}
                   w={["300px", "600px", "600px", "400px"]}
                   bgPosition="center"
                   bgRepeat="no-repeat"
@@ -184,11 +202,11 @@ const HomePage = () => {
         </Box>
       </Box>
       <Box mt={10} >
-        <Image w={"100%"} src='https://files.myglamm.com/site-images/original/Row-44-Beware-Strip-3360x220.png' />
+        <Image w={"100%"} src={beware} />
       </Box>
       <Box mt={10} >
         <Box margin={"auto"} w="70%">
-          <Image h={100} w={"100%"} src='https://files.myglamm.com/site-images/original/Row-43-Disclaimer-Strip-3360x220.png' />
+          <Image h={100} w={"100%"} src={covers} />
         </Box>
       </Box>
       <Box m={4} mt={10}>

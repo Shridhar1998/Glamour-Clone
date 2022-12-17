@@ -5,18 +5,24 @@ const jwt = require("jsonwebtoken");
 //argon2
 
 const UserModel = require("../models/user.model");
+const adminAuthMiddleware = require("../middleware/authorization");
+
 const secrectToken = process.env.SECRECTTOKEN;
 const refreshToken = process.env.REFRESHTOKEN;
 
 const app = express.Router();
 
 
-app.get("/", (req,res)=> {
-    return res.send("user url")
+app.get("/",adminAuthMiddleware, async (req,res)=> {
+    const users = await UserModel.find();
+    return res.send(users)
 })
 
 app.post("/signup", async(req,res)=> {
-    const {name, email, password, role} = req.body;
+    let {name, email, password, role, status} = req.body;
+    if(role === "seller"){
+        status = "pending"
+    }
 
     let user = await UserModel.findOne({email});
     try{
@@ -24,7 +30,7 @@ app.post("/signup", async(req,res)=> {
             return res.status(409).send("This email is already in use try with other email.")
         }
 
-        let newUser = new UserModel({name, email, password, role});
+        let newUser = new UserModel({name, email, password, role, status});
         await newUser.save();
         return res.status(201).send(newUser);
     }catch(e){
@@ -56,7 +62,8 @@ app.post("/login", async(req,res)=> {
             token,
             refreshToken: refreshT,
             user: user.name,
-            id: user._id
+            id: user._id,
+            role: user.role
         });
 
     }else{
@@ -84,6 +91,16 @@ app.post("/refresh", async(req,res)=> {
         }
     }catch(e){
         return res.status(401).send("unauthorized");
+    }
+})
+
+app.patch("/:id",adminAuthMiddleware, async(req,res)=> { // user's id
+    const {id} = req.params;
+    try{
+        let statusChanged = await UserModel.findByIdAndUpdate(id, {$set: {status: req.body.status}}, {new: true});
+        return res.status(200).send(statusChanged);
+    }catch(e){
+        return res.status(401).send(e);
     }
 })
 

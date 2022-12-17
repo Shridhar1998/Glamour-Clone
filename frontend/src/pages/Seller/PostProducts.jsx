@@ -85,7 +85,7 @@ const PostProducts = () => {
       });
     }
     axios
-      .post("http://localhost:8080/products", {brand:brand,name: name, price: price, description:description, image_link:imageUrl, rating: rating, category: category}, {
+      .post("https://glamour.onrender.com/products", {brand:brand,name: name, price: price, description:description, image_link:imageUrl, rating: rating, category: category}, {
         headers: {
           authorization: token,
         },

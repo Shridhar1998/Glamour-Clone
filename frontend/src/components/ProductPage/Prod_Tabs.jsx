@@ -19,7 +19,18 @@ import { BsStarFill } from "react-icons/bs";
 import P_Button from "./P_Button";
 import P_Dummy from "./P_Dummy";
 
-function Prod_Tabs() {
+function Prod_Tabs({type}) {
+
+  const how_to=`To apply ${type} as a beginner, start by washing your face and applying a moisturizer, to make sure your skin is hydrated. Dab small dots of a light foundation across your face with your finger and use a brush to blend the foundation evenly across your skin. Next, apply concealer to any blemishes`
+  const exp_tips=`Beyond physical health, cosmetics can help to improve our mood, enhance our appearance and boost our self-esteem. They can also help to exhibit personal style and, as such, are an important means of social expression.`
+  const init=`A "cosmetic" is any substance used to clean, improve or change the complexion, skin, hair, nails or teeth. Cosmetics include beauty preparations (make-up, perfume, skin cream, nail polish) and grooming aids (soap, shampoo, shaving cream, deodorant).`
+  const faq=`They are used as a cleansing, moisturizing and beautifying agent.
+
+  They help in enhancing attractiveness of the body.
+
+  They help in altering the appearance of the body without affecting its functions.
+  
+  Sunscreen products help in protecting the body from UV rays and treating sunburns.`
   return (
     <Tabs variant="unstyled" 
     mt={'1rem'}
@@ -213,16 +224,16 @@ function Prod_Tabs() {
             ))}
         </TabPanel>
         <TabPanel>
-          <P_Dummy/>
+          <P_Dummy how={how_to} />
         </TabPanel>
         <TabPanel>
-          <P_Dummy/>
+          <P_Dummy how={exp_tips}/>
         </TabPanel>
         <TabPanel>
-          <P_Dummy/>
+          <P_Dummy how={init}/>
         </TabPanel>
         <TabPanel>
-          <P_Dummy/>
+          <P_Dummy  how={faq}/>
         </TabPanel>
       </TabPanels>
     </Tabs>

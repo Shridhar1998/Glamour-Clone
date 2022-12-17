@@ -6,7 +6,7 @@ function Header_Gradient({ name, size }) {
     <Box padding={"10px"} className="flexmedia">
       <Center>
         <Text fontSize={size} fontWeight="bold" color="black">
-          <Text padding={"0 1rem"}>{name}</Text>
+          <Text padding={"0 1rem"} textTransform='uppercase'>{name}</Text>
 
           <Box
             bgImage="linear-gradient(white, #fbbcbc)"

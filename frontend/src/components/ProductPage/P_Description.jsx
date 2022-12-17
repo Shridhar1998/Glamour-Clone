@@ -16,7 +16,7 @@ import { IoIosArrowUp, IoIosArrowDown } from "react-icons/io";
 import Offer_Image from "./Offer_Image";
 import Prod_Tabs from "./Prod_Tabs";
 
-function P_Description() {
+function P_Description({product_type}) {
   const [read, setRead] = useState(false);
   return (
     <Box>
@@ -79,7 +79,7 @@ function P_Description() {
       <Divider bg={"grey"} />
 
       {/* Tabs */}
-      <Prod_Tabs />
+      <Prod_Tabs  type= {product_type} />
 
       {/* Tabs */}
     </Box>

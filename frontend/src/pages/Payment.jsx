@@ -14,7 +14,7 @@ import {
 import React from "react";
 import { TriangleDownIcon } from "@chakra-ui/icons";
 import upiimg from "../Images/bhimupi.png";
-import "./payment.css";
+import "../styles/payment.css";
 const Payment = () => {
   const [value, setValue] = React.useState("1");
 

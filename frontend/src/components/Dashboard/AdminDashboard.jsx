@@ -126,15 +126,18 @@ const AdminDashboard = () => {
 								<Tr>
 									<Th>Name</Th>
 									<Th>Email</Th>
+									<Th>Joined on</Th>
 								</Tr>
 							</Thead>
 							<Tbody>
 								{data.map((ele) => {
+									let date = new Date(ele.createdAt);
 									if (ele.role === "user") {
 										return (
 											<Tr key={ele.email}>
 												<Td>{ele.name}</Td>
 												<Td>{ele.email}</Td>
+												<Td>{date.toGMTString()}</Td>
 											</Tr>
 										);
 									}

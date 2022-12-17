@@ -1,5 +1,6 @@
 import {
 	Button,
+	Flex,
 	FormControl,
 	FormLabel,
 	Input,
@@ -8,12 +9,12 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 
-const Form = ({ handleInput, fullname, email, password, onClose }) => {
+const Form = ({ handleInput, fullname, email, password }) => {
 	const [show, setShow] = React.useState(false);
 	const handleClick = () => setShow(!show);
 
 	return (
-		<>
+		<Flex gap="2" flexDirection={"column"}>
 			<FormControl>
 				<FormLabel>Full Name</FormLabel>
 				<Input
@@ -46,7 +47,7 @@ const Form = ({ handleInput, fullname, email, password, onClose }) => {
 					</InputRightElement>
 				</InputGroup>
 			</FormControl>
-		</>
+		</Flex>
 	);
 };
 

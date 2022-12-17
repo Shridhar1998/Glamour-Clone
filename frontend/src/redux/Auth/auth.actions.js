@@ -29,6 +29,7 @@ const loginApi = (payload) => (dispatch) => {
 			setItem("user", res.data.user);
 			setItem("refreshToken", res.data.refreshToken);
 			setItem("userid", res.data.id);
+			setItem("role", res.data.role);
 			dispatch({ type: LOGIN_SUCCESS });
 			// localStorage.setItem("token", res.data.token);
 		})

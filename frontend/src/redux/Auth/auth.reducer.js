@@ -8,7 +8,7 @@ import {
 	LOGOUT,
 } from "./auth.actionTypes";
 
-import { getItem, setItem } from "../localStorage";
+import { getItem, removeItem, setItem } from "../localStorage";
 
 const initialState = {
 	token: getItem("token") || "",
@@ -16,6 +16,7 @@ const initialState = {
 	isLoading: false,
 	isError: false,
 	userid: getItem("userid") || "",
+	role: getItem("role") || "",
 	refreshToken: getItem("refreshToken") || "",
 	username: getItem("user") || "",
 };
@@ -55,10 +56,11 @@ export const reducer = (state = initialState, { type, payload }) => {
 		}
 
 		case LOGOUT: {
-			setItem("token", "");
-			setItem("user", "");
-			setItem("refreshToken", "");
-			setItem("userid", "");
+			removeItem("token");
+			removeItem("user");
+			removeItem("refreshToken");
+			removeItem("userid");
+			removeItem("role");
 			return { ...state, isAuth: false };
 		}
 

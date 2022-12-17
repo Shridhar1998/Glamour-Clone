@@ -30,14 +30,32 @@ function ProductPage() {
   const [data, setData] = useState(Array(8).fill(0));
   const [prod, setProd] = useState([]);
   const { category } = useParams();
-
+  const [sortBy, setSortBy] = useState("asc");
   function handleGet() {
-    axios(`https://glamour.onrender.com/products/${category}`).then((res) => {
+    axios(`https://glamour.onrender.com/products/${category}?page=${3}`).then((res) => {
       setProd(res.data);
       // console.log(res, "prod");
       localStorage.setItem("data", JSON.stringify(res.data));
     });
   }
+  function letsSort(sortBy) {
+    if (sortBy =="asc") {
+      return axios.get(
+        `https://glamour.onrender.com/products/${category}/${sortBy}/sort`
+      ).then(res=>{
+        // setProd(res.data)
+        console.log(res,"sort")})
+    } else if (sortBy =="desc") {
+  
+      return axios.get(
+        `https://glamour.onrender.com/products/${category}/${sortBy}/sort`
+      ).then(res=>console.log(res,"desc"))
+    }
+  }
+  useEffect(() => {
+    letsSort(sortBy);
+  }, [sortBy]);
+
   console.log(prod);
   useEffect(() => {
     setProd(dummydata);
@@ -71,10 +89,15 @@ function ProductPage() {
         <Header_Gradient name={category} size={"40px"} />
       </Box>
       {/* header Gradient */}
-      <Box m={'1rem 0'}>
-        <Select placeholder="Select option" variant='filled' w={'xs'} >
-          <option value="lth">Low to High</option>
-          <option value="htl">High to Low</option>
+      <Box m={"1rem 0"}>
+        <Select
+          placeholder="Select option"
+          variant="filled"
+          w={"xs"}
+          onChange={(e) => setSortBy(e.target.value)}
+        >
+          <option value="asc">Low to High</option>
+          <option value="desc">High to Low</option>
         </Select>
       </Box>
 

@@ -79,14 +79,15 @@ function SingleProduct() {
             overflow="hidden"
             variant="outline"
             h={{ md: "350px", sm: "auto", lg: "400px" }}
-            w={{ sm: "100%", lg: "100%" }}
+            w={{ sm: "400px", lg: "100%", base:"350px"}}
             boxSizing="border-box"
+            // border={'1px solid red'}
           >
             <Stack
               className={styles.scrollbar}
               direction={{ sm: "row", md: "column", base: "row", lg: "column" }}
               // border={"1px solid red"}
-              w={{ base: "auto", sm: "90%", md: "100px", lg: "100px" }}
+              w={{ base: "350px", sm: "90%", md: "100px", lg: "100px" }}
               h={{ base: "100px", sm: "100px", md: "350px", lg: "100%" }}
               overflow={"scroll"}
               overflowX="scroll"

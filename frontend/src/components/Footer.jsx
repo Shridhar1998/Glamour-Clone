@@ -13,8 +13,6 @@ import {
     IconButton,
     Image,
 } from '@chakra-ui/react';
-import { ReactNode } from 'react';
-import { BiMailSend } from 'react-icons/bi';
 import { FaInstagram, FaTwitter, FaYoutube } from 'react-icons/fa';
 import "../components/navbar/Nav.css"
 import { Link } from 'react-router-dom';

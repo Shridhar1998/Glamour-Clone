@@ -1,6 +1,6 @@
 import { Box, Divider, Text } from "@chakra-ui/react";
 import React from "react";
-import "./checkout.css";
+import "../styles/checkout.css";
 import { EmailIcon, PhoneIcon } from "@chakra-ui/icons";
 import { FaTruckMoving } from "react-icons/fa";
 

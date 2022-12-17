@@ -1,7 +1,55 @@
-import { Box, Button, Container, Text } from "@chakra-ui/react";
-import React from "react";
-import "./cart.css";
+import { Box, Button, Text } from "@chakra-ui/react";
+import React, { useEffect, useState } from "react";
+import { deleteCartItem, getCartDetails, updateQuantity } from "../redux/cart/action";
+import { useDispatch, useSelector } from "react-redux";
+import "../styles/cart.css";
+
+
+
 const Cart = () => {
+  // const [grandTotal,setGrandTotal] = useState(0)
+  // const [incQuantity,setIncQuantity] = useState(1)
+  const [inc,setInc] = useState(false)
+  const [dec,setDec] = useState(false)
+  const [itemDelete,setItemDelete] = useState(false)
+  const dispatch = useDispatch();
+  const data = useSelector((store) => store.cart);
+  
+  
+  let cartDetails = data.cartData;
+  let id = "6398ae7a43d7f027e4d87296";
+  const findTotal = (cartDetails) => {
+    let total = 0
+    cartDetails.map((el)=> {
+      total = total + el.quantity * el.price
+    })
+    return total;
+  }
+
+  let total = findTotal(cartDetails)
+
+  const handleInc = (idd,quantity) => {
+    dispatch(updateQuantity(idd,quantity+1))
+    setInc(!inc)
+  }
+
+  const handleDec = (idd,quantity) => {
+    dispatch(updateQuantity(idd,quantity-1))
+    setDec(!dec)
+  }
+
+  const handleRemove = (idd) => {
+    dispatch(deleteCartItem(idd))
+    setItemDelete(!itemDelete)
+  }
+
+
+  useEffect(() => {
+    dispatch(getCartDetails(id));
+  }, [inc,dec,itemDelete]);
+
+
+
   return (
     <>
       <div className="outerbox">
@@ -9,72 +57,77 @@ const Cart = () => {
           <h1>Bag</h1>
         </div>
         <div className="productsOuter">
-          <div className="singleProduct">
-            <div className="Imgdiv">
-              <img
-                src="https://files.myglamm.com/site-images/original/LP1_4.png"
-                alt="default"
-              />
-            </div>
-            <div className="detailsdiv">
-              <div className="productname">
-                <Text fontSize={{ base: "20px", md: "25px", lg: "28px" }}>
-                  This
-                </Text>
+          {cartDetails?.map((el,i) => {
+            return (
+            <div className="singleProduct">
+              <div className="Imgdiv">
+                <img src={el.image_link} alt="default" />
               </div>
-              <div className="productprice">
-                <Text fontSize={{ base: "20px", md: "25px", lg: "28px" }}>
-                  This
-                </Text>
+              <div className="detailsdiv">
+                <div className="productname">
+                  <Text fontSize={{ base: "20px", md: "25px", lg: "28px" }}>
+                    {el.name}
+                  </Text>
+                </div>
+                <div className="productprice">
+                  <Text fontSize={{ base: "20px", md: "25px", lg: "28px" }}>
+                    {el.price}
+                  </Text>
+                </div>
+                <div className="counter">
+                  <Button
+                    colorScheme="black"
+                    variant="solid"
+                    color="white"
+                    bgColor="black"
+                    className="counterbtn"
+                    fontSize={["20px", "24px", "28px"]}
+                    borderRadius="50%"
+                    onClick={()=>handleDec(el._id,el.quantity) }
+                  >
+                    -
+                  </Button>
+                  <Text
+                    className="countText"
+                    fontSize={["16px", "16px", "20px"]}
+                  >
+                    {el.quantity}
+                  </Text>
+                  <Button
+                    colorScheme="black"
+                    variant="solid"
+                    color="white"
+                    bgColor="black"
+                    className="counterbtn"
+                    fontSize={["20px", "24px", "28px"]}
+                    borderRadius="50%"
+                    //   w={["30%","40%","50%"]}
+                    p={"0px"}
+                    onClick={()=>handleInc(el._id,el.quantity) }
+                  >
+                    +
+                  </Button>
+                </div>
+                <div className="removeproduct">
+                  <button className="removebtn" onClick={()=> handleRemove(el._id)}>Remove </button>
+                </div>
               </div>
-              <div className="counter">
-                <Button
-                  colorScheme="black"
-                  variant="solid"
-                  color="white"
-                  bgColor="black"
-                  className="counterbtn"
-                  fontSize={["20px", "24px", "28px"]}
-                  borderRadius="50%"
-                >
-                  -
-                </Button>
-                <Text className="countText" fontSize={["16px", "16px", "20px"]}>
-                  26
-                </Text>
-                <Button
-                  colorScheme="black"
-                  variant="solid"
-                  color="white"
-                  bgColor="black"
-                  className="counterbtn"
-                  fontSize={["20px", "24px", "28px"]}
-                  borderRadius="50%"
-                //   w={["30%","40%","50%"]}
-                p={"0px"}
-                >
-                  +
-                </Button>
-              </div>
-              <div className="removeproduct">
-                <button className="removebtn">Remove </button>
-              </div>
-            </div>
-          </div>
+            </div>)
+          })}
         </div>
       </div>
       <Box
         w="100vw"
         border="1px solid"
         h={"50px"}
-        fontSize={["15px","20px","21px","21px"]}
+        fontSize={["15px", "20px", "21px", "21px"]}
         pl={"60vw"}
         alignItems="center"
         bgColor={"whitesmoke"}
         pt="7px"
         fontWeight={"bold"}
       >
-        GRAND TOTAL: 222
+        {`GRAND TOTAL: ${total}`}
       </Box>
       <Button
         colorScheme={"black"}

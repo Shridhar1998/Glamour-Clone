@@ -41,7 +41,13 @@ const Login = ({ isOpen, onClose, setChangeValue }) => {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		console.log(form);
-		dispatch(loginApi(form)).then((res) => console.log(res));
+		dispatch(loginApi(form)).then(() => {});
+		console.log(
+			getItem("user"),
+			getItem("token"),
+			getItem("userid"),
+			getItem("refreshToken")
+		);
 	};
 
 	return (

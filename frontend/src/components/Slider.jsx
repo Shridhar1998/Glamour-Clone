@@ -84,9 +84,9 @@ const Slider = () => {
   return (
     <Box w={"80%"} margin="auto" mt={8}  >
       <Carousel responsive={responsive}  >
-        {offer.map((e) => {
+        {offer.map((e,i) => {
           return (
-            <Box boxShadow="rgba(0, 0, 0, 0.24) 0px 3px 8px;" w={[270, 275, 260, 340]} margin="auto" spacing={"auto"} mt={5}  >
+            <Box key={i} boxShadow="rgba(0, 0, 0, 0.24) 0px 3px 8px;" w={[270, 275, 260, 340]} margin="auto" spacing={"auto"} mt={5}  >
               <Box bg="white" borderRadius={8} _hover={{
                 boxShadow: "rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px", w: "100%",
               }}>

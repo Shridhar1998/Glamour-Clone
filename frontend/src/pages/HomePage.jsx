@@ -78,9 +78,10 @@ const HomePage = () => {
       <Box>
         <Box margin="auto" mt={7} >
           <Flex className="flexBoxForHome" direction={["column", "column", "column", "row"]}>
-            {offer.map((e) => {
+            {offer.map((e,i) => {
               return (
                 <Box
+                  key={i}
                   w={["300px", "600px", "600px", "400px"]}
                   bgPosition="center"
                   bgRepeat="no-repeat"
@@ -124,9 +125,10 @@ const HomePage = () => {
       <Box>
         <Box margin="auto" mt={7} >
           <Flex className="flexBoxForHome" direction={["column", "column", "column", "row"]}>
-            {offer2.map((e) => {
+            {offer2.map((e,i) => {
               return (
                 <Box
+                  key={i}
                   w={["300px", "600px", "600px", "400px"]}
                   bgPosition="center"
                   bgRepeat="no-repeat"
@@ -164,9 +166,10 @@ const HomePage = () => {
       <Box>
         <Box margin="auto" mt={7} >
           <Flex className="flexBoxForHome" direction={["column", "column", "column", "row"]}>
-            {offer3.map((e) => {
+            {offer3.map((e,i) => {
               return (
                 <Box
+                  key={i}
                   w={["300px", "600px", "600px", "400px"]}
                   bgPosition="center"
                   bgRepeat="no-repeat"

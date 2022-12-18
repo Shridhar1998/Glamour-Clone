@@ -10,15 +10,39 @@ import {
   GridItem,
   Input,
   Text,
+  useToast,
 } from "@chakra-ui/react";
 import React from "react";
 import { TriangleDownIcon } from "@chakra-ui/icons";
 import upiimg from "../Images/bhimupi.png";
 import "../styles/payment.css";
 import { getItem } from "../redux/localStorage";
+import {  useNavigate } from "react-router-dom";
+import axios from "axios";
 const Payment = () => {
   const [value, setValue] = React.useState("1");
   let total = getItem("total")
+  const toast = useToast()
+  const navigate = useNavigate()
+
+  const id = getItem("userid")
+
+  const handlePay = async() => {
+
+    await axios.delete(`https://glamour.onrender.com/cart/all/${id}`).then((res)=>console.log(res)).catch((err)=> console.log(err))
+
+    setTimeout(()=>{
+      toast({
+        title: 'Order Successfully',
+        position:"top",
+        description: "Your order will be delivered soon",
+        status: 'success',
+        duration: 4000,
+        isClosable: true,
+      })
+      navigate("/")
+    },2000)
+  }
 
   return (
     <>
@@ -178,7 +202,7 @@ const Payment = () => {
                   ml={["10%","0%","0%","0%","0%"]}
                 ></Input>
               </Box>
-              <Button bgColor={"black"} color="white" fontSize={["15px","18px","20px","22px","24px"]} colorScheme="green" display={"block"}  m="auto" mt={"20px"} borderRadius="%">{`PAY $${total}`}</Button>
+              <Button bgColor={"black"} color="white" fontSize={["15px","18px","20px","22px","24px"]} colorScheme="green" display={"block"}  m="auto" mt={"20px"} borderRadius="%" onClick={handlePay}>{`PAY $${total}`}</Button>
             </AccordionPanel>
           </AccordionItem>
           <AccordionItem

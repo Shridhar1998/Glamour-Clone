@@ -8,6 +8,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import "../styles/cart.css";
 import { Link } from "react-router-dom";
+import { getItem } from "../redux/localStorage";
 
 const Cart = () => {
   const [inc, setInc] = useState(false);
@@ -15,10 +16,10 @@ const Cart = () => {
   const [itemDelete, setItemDelete] = useState(false);
   const dispatch = useDispatch();
   const data = useSelector((Store) => Store.cart);
-  console.log(data.cartData);
+  const token = getItem("token")
 
   let cartDetails = data.cartData;
-  let id = "6398ae7a43d7f027e4d87296";
+  const id = getItem("userid")
   const findTotal = (cartDetails) => {
     let total = 0;
     cartDetails.map((el) => {
@@ -45,7 +46,7 @@ const Cart = () => {
   };
 
   useEffect(() => {
-    dispatch(getCartDetails(id));
+    dispatch(getCartDetails(id,token));
   }, [inc, dec, itemDelete]);
 
   return (

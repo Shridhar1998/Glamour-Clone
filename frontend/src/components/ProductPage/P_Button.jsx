@@ -1,7 +1,7 @@
 import { Button, useColorModeValue } from "@chakra-ui/react";
 import React from "react";
 
-function P_Button({ text }) {
+function P_Button({ text,handleAddtoCart }) {
   return (
     <Button
       rounded={"none"}
@@ -17,6 +17,9 @@ function P_Button({ text }) {
         transform: "translateY(2px)",
         boxShadow: "lg",
       }}
+      colorScheme="black"
+
+      onClick={handleAddtoCart}
     >
       {text}
     </Button>

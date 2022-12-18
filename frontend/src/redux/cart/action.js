@@ -27,8 +27,7 @@ import axios from 'axios'
 //     return { type: UPDATE_CART_DETAILS };
 // }
 
-export const getCartDetails = (id) => async(dispatch)=> {
-    let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOThhZTdhNDNkN2YwMjdlNGQ4NzI5NiIsIm5hbWUiOiJ1c2VyMSIsImVtYWlsIjoidXNlcjFAZ2xhbW91ci5jb20iLCJyb2xlIjoidXNlciIsImlhdCI6MTY3MTMwMzgzOCwiZXhwIjoxNjcxOTA4NjM4fQ.v7jT8xQbIMNk4zPevF3B30Ul6ItbaaxKhO0NOQ0ElWk"
+export const getCartDetails = (id,token) => async(dispatch)=> {
     let res = await axios.get(`https://glamour.onrender.com/cart/${id}`,{headers:{authorization:token}})
     console.log("res",res.data)
     return dispatch({type: GET_CART_DETAILS, payload: res.data})

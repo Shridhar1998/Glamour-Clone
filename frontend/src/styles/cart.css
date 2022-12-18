@@ -1,21 +1,17 @@
 .outerbox{
     width: 70vw;
-    border: 1px solid;
     margin: auto;
 }
 .productsOuter{
     width: 100%;
-    border: 1px solid;
 }
 .singleProduct{
     display: flex;
     width: 100%;
-    border: 1px solid;
     height: 140px;
 }
 .Imgdiv{
     width: 20%;
-    border: 1px solid;
     padding: 1%;
 }
 .Imgdiv > img{
@@ -29,28 +25,24 @@
 }
 .productname{
     width: 50%;
-    border: 1px solid;
     padding: 2%;
     height: 100%;
 }
 .productprice{
     width: 15%;
     height: 100%;
-    border: 1px solid;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 .counter{
     width: 20%;
-    border: 1px solid;
     display: flex;
     padding: 1%;
     height: 100%;
 }
 .removeproduct{
     width: 15%;
-    border: 1px solid;
     height: 100%;
     display: flex;
     padding: 1%;

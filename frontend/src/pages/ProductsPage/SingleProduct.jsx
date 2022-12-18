@@ -13,6 +13,7 @@ import {
   Image,
   Stack,
   Text,
+  useToast,
   VStack,
   Wrap,
 } from "@chakra-ui/react";
@@ -26,23 +27,67 @@ import { BsTwitter } from "react-icons/bs";
 import { SiLinkedin, SiMessenger } from "react-icons/si";
 import P_Button from "../../components/ProductPage/P_Button";
 import P_Description from "../../components/ProductPage/P_Description";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import axios from "axios";
 import P_video from "../../components/ProductPage/P_Video_Desc";
+import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { getItem } from "../../redux/localStorage";
+import { getCartDetails } from "../../redux/cart/action";
 
 function SingleProduct() {
   const [prod, setProd] = useState({});
   const { category, id } = useParams();
+  const user_id = getItem("userid");
+  let token = getItem("token");
+
+  const toast = useToast()
+  const navigate = useNavigate()
 
   function handleGet() {
     axios(`https://glamour.onrender.com/products/${category}/${id}`).then(
       (res) => {
         setProd(res.data[0]);
-        // console.log(res, "prod");
       }
     );
   }
-  console.log(prod);
+
+
+
+  const handleAddtoCart = async () => {
+    // dispatch(getCartDetails())
+    let productid = prod._id;
+    delete prod._id;
+    let objadd = {
+      ...prod,
+      userId: user_id,
+      productId: productid,
+      quantity: 1,
+    };
+    await axios
+      .post(`https://glamour.onrender.com/cart/${user_id}`, objadd, {
+        headers: { authorization: token },
+      })
+      .then((res) => {        toast({
+        title: 'Add to Cart',
+        position:"top",
+        description: "Product added successfully",
+        status: 'success',
+        duration: 3000,
+        isClosable: true,
+      })
+    navigate("/cart")
+    }
+).catch((err)=>  toast({
+  title: 'Something went wrong',
+  position:"top",
+  description: "Please try again",
+  status: 'error',
+  duration: 2000,
+  isClosable: true,
+}));
+
+  };
 
   useEffect(() => {
     handleGet();
@@ -61,13 +106,19 @@ function SingleProduct() {
           </BreadcrumbItem>
 
           <BreadcrumbItem>
-            <BreadcrumbLink textTransform={'capitalize'} href={`/${category}`}>{category}</BreadcrumbLink>
+            <BreadcrumbLink textTransform={"capitalize"} href={`/${category}`}>
+              {category}
+            </BreadcrumbLink>
           </BreadcrumbItem>
           <BreadcrumbItem>
-            <BreadcrumbLink textTransform={'capitalize'} href="#">{prod.brand}</BreadcrumbLink>
+            <BreadcrumbLink textTransform={"capitalize"} href="#">
+              {prod.brand}
+            </BreadcrumbLink>
           </BreadcrumbItem>
           <BreadcrumbItem>
-            <BreadcrumbLink textTransform={'capitalize'} href="#">{prod.product_type}</BreadcrumbLink>
+            <BreadcrumbLink textTransform={"capitalize"} href="#">
+              {prod.product_type}
+            </BreadcrumbLink>
           </BreadcrumbItem>
         </Breadcrumb>
       </Center>
@@ -79,7 +130,7 @@ function SingleProduct() {
             overflow="hidden"
             variant="outline"
             h={{ md: "350px", sm: "auto", lg: "400px" }}
-            w={{ sm: "400px", lg: "100%", base:"350px"}}
+            w={{ sm: "400px", lg: "100%", base: "350px" }}
             boxSizing="border-box"
             // border={'1px solid red'}
           >
@@ -150,15 +201,20 @@ function SingleProduct() {
 
                 {/* price */}
                 <HStack m={"0.5rem 0 0.1rem 0"}>
-                  <Text fontSize={"xl"}>{ prod?.price_sign||"$"} {prod?.price || 6.0}</Text>
+                  <Text fontSize={"xl"}>
+                    {prod?.price_sign || "$"} {prod?.price || 6.0}
+                  </Text>
                   <Text textDecoration={"line-through"} color="grey">
                     {" "}
-                    $ {+prod?.price+4.3 || 6.0}
+                    $ {+prod?.price + 4.3 || 6.0}
                   </Text>
                 </HStack>
                 <Text mb={"1rem"}>(MRP incl. of all taxes)</Text>
                 <Box>
-                  <P_Button text={"ADD TO cart"} />
+                  <P_Button
+                    text={"ADD TO cart"}
+                    handleAddtoCart={handleAddtoCart}
+                  />
                 </Box>
                 {/* shade */}
                 <Stack>
@@ -198,11 +254,10 @@ function SingleProduct() {
       </Center>
 
       {/* video description */}
-      
-        <Box>
-          <P_video />
-        </Box>
-      
+
+      <Box>
+        <P_video />
+      </Box>
     </Container>
   );
 }

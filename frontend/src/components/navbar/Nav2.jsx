@@ -6,7 +6,6 @@ import {
 	Input,
 	InputGroup,
 	InputLeftElement,
-	Link,
 	Stack,
 } from "@chakra-ui/react";
 import React from "react";
@@ -20,6 +19,7 @@ import { useDisclosure } from "@chakra-ui/react";
 import { useState } from "react";
 import Signup from "../Signup";
 import Login from "../Login";
+import { Link } from "react-router-dom";
 import { getItem } from "../../redux/localStorage";
 
 const Nav2 = () => {

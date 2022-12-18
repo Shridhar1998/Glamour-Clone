@@ -10,18 +10,23 @@ import {
 } from "@chakra-ui/react";
 import axios from "axios";
 import React, { useState } from "react";
-import { useEffect } from "react";
 import { getItem } from "../../redux/localStorage";
 
 const UserDashboard = () => {
 	const user = getItem("userid");
-	const [data, setData] = useState([]);
-	useEffect(() => {
-		axios
-			.get("https://glamour.onrender.com/user")
-			.then((res) => setData(res.data));
-	}, []);
 
+	const token = getItem("token");
+	const [data, setData] = useState([]);
+
+	axios
+		.get("https://glamour.onrender.com/user", {
+			headers: {
+				authorization: token,
+			},
+		})
+		.then((res) => setData(res.data));
+
+	console.log(data);
 	return (
 		<Card
 			direction={{ base: "column", sm: "row" }}

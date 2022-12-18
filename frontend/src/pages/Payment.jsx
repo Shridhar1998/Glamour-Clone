@@ -9,6 +9,7 @@ import {
   Grid,
   GridItem,
   Input,
+  Select,
   Text,
   useToast,
 } from "@chakra-ui/react";
@@ -104,12 +105,12 @@ const Payment = () => {
             <AccordionPanel bgColor={"white"} pt="30px" pb="30px">
               <div className="netbank">
                 {" "}
-                <select
+                <Select
                   icon={<TriangleDownIcon fontSize={"10px"} />}
                   placeholder="Woohoo! A new icon"
-                  borderRadius={"0%"}
+                  borderRadius={"none"}
                   outline="none"
-                  _focusVisible="none"
+                  // _focusVisible="none"
                 >
                   <option value="">Axis Bank</option>
                   <option value="">Bank of Baroda</option>
@@ -117,7 +118,7 @@ const Payment = () => {
                   <option value="">Yes Bank</option>
                   <option value="">SBI Bank</option>
                   <option value="">Canara Bank</option>
-                </select>{" "}
+                </Select>{" "}
                 <Button colorScheme={"white"} color={"white"} bgColor="black">
                   {`PAY $${total}`}
                 </Button>{" "}
@@ -151,13 +152,13 @@ const Payment = () => {
                   Card Number :
                 </Text>
                 <Input
-                  _focusVisible={"none"}
+                  // _focusVisible={"none"}
                   bgColor="white"
                   h="40px"
                   fontSize={"16px"}
                   w={["80%","80%","80%","60%","60%"]}
                   ml={["10%","10%","10%","0","0"]}
-                  borderRadius={"0%"}
+                  borderRadius={"none"}
                 ></Input>
               </Box>
               <Box display={"flex"} mt="20px" flexDirection={["column","column","column","row","row"]}>
@@ -165,13 +166,13 @@ const Payment = () => {
                   Name :
                 </Text>
                 <Input
-                  _focusVisible={"none"}
+                  // _focusVisible={"none"}
                   bgColor="white"
                   h="40px"
                   fontSize={"16px"}
                   w={["80%","80%","80%","60%","60%"]}
                   ml={["10%","10%","10%","0","0"]}
-                  borderRadius={"0%"}
+                  borderRadius={"none"}
                 ></Input>
               </Box>
               <Box display={"flex"} mt="20px" flexDirection={["column","row","row","row","row"]}>
@@ -180,12 +181,12 @@ const Payment = () => {
                   Validity :
                 </Text>
                 <Input
-                  _focusVisible={"none"}
+                  // _focusVisible={"none"}
                   bgColor="white"
                   h="40px"
                   fontSize={"16px"}
                   w={["50%","20%","20%","20%","20%"]}
-                  borderRadius={"0%"}
+                  borderRadius={"none"}
                   ml={["10%","0%","0%","0%","0%"]}
                 ></Input>
                 <Text fontSize={["14px","14px","16px","16px","18px"]} w={["50%","20%","20%","20%","20%"]} pl={"10%"}>
@@ -193,16 +194,16 @@ const Payment = () => {
                   CVV :
                 </Text>
                 <Input
-                  _focusVisible={"none"}
+                  // _focusVisible={"none"}
                   bgColor="white"
                   h="40px"
                   fontSize={"16px"}
                   w={["50%","20%","20%","20%","20%"]}
-                  borderRadius={"0%"}
+                  borderRadius={"none"}
                   ml={["10%","0%","0%","0%","0%"]}
                 ></Input>
               </Box>
-              <Button bgColor={"black"} color="white" fontSize={["15px","18px","20px","22px","24px"]} colorScheme="green" display={"block"}  m="auto" mt={"20px"} borderRadius="%" onClick={handlePay}>{`PAY $${total}`}</Button>
+              <Button bgColor={"black"} color="white" fontSize={["15px","18px","20px","22px","24px"]} colorScheme="green" display={"block"}  m="auto" mt={"20px"} borderRadius="none" onClick={handlePay}>{`PAY $${total}`}</Button>
             </AccordionPanel>
           </AccordionItem>
           <AccordionItem
@@ -266,7 +267,7 @@ const Payment = () => {
                   fontSize="15px"
                   textTransform={"uppercase"}
                   h="40px"
-                  borderRadius="0%"
+                  borderRadius="none"
                   p={"3px 10px 3px 10px"}
                   mt="20px"
                   mb={"30px"}

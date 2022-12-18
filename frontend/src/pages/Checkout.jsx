@@ -92,7 +92,7 @@ let year = d.getFullYear();
             <div className="tablescroll">
           {data.cartData?.map((el,i)=>{
               return (
-                <Box className="orderTable">
+                <Box className="orderTable" key={i}>
                 <Box className="imagetable">
                   <img
                     src={el.image_link}

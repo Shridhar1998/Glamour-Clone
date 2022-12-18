@@ -5,7 +5,7 @@ function Svg() {
   return (
    <Box w={'160px'} borderRadius='2rem'  bg={"pink"}  >
     <svg xmlns="http://www.w3.org/2000/svg" width="155" height="28">
-        <g fill="none" fill-rule="evenodd">
+        <g fill="none" fillRule="evenodd">
           <path fill="var(--color1)" d="M1 8h146v13H1z" opacity="0.316"></path>
           <path
             fill="#000"

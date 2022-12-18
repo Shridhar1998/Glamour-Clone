@@ -179,13 +179,13 @@ function Prod_Tabs({type}) {
           {Array(2)
             .fill(0)
             ?.map((e, i) => (
-              <Stack spacing="1rem" m={"2rem 0"}>
+              <Stack key={i} spacing="1rem" m={"2rem 0"}>
                 <Text fontWeight={"bold"}>RATINGS & REVIEWS (2 Reviews)</Text>
                 <HStack gap={"0.5rem"}>
                   {Array(5)
                     ?.fill(0)
-                    ?.map((e) => (
-                      <BsStarFill
+                    ?.map((e,i) => (
+                      <BsStarFill key={i}
                         mt="1rem 0.5rem"
                         fontSize={"1.5rem"}
                         style={{ marginLeft: "1" }}

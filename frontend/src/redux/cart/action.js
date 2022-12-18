@@ -47,9 +47,9 @@ export const deleteCartItem = (id) => async(dispatch)=> {
     return dispatch({type: DELETE_CART_ITEM})
 }
 
-export const addToCart = (id) => async(dispatch) => {
-    let res = await axios.post(`https://glamour.onrender.com/cart/${id}`)
-}
+// export const addToCart = (id) => async(dispatch) => {
+//     let res = await axios.post(`https://glamour.onrender.com/cart/${id}`)
+// }
 
 // export const emptyCart = () => async() => {
 //     let res = await axios.

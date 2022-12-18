@@ -5,7 +5,7 @@ function Header_Gradient({ name, size }) {
   return (
     <Box padding={"10px"} className="flexmedia">
       <Center>
-        <Text fontSize={size} fontWeight="bold" color="black">
+        <Box fontSize={size} fontWeight="bold" color="black">
           <Text padding={"0 1rem"} textTransform='uppercase'>{name}</Text>
 
           <Box
@@ -14,7 +14,7 @@ function Header_Gradient({ name, size }) {
             margin="auto"
             marginTop="-20px"
           />
-        </Text>
+        </Box>
       </Center>
     </Box>
   );

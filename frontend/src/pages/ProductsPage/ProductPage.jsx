@@ -98,7 +98,7 @@ setPage(1)
       {/* header Gradient */}
       <Box m={"1rem 0"}>
         <Select
-          placeholder="Select option"
+          placeholder="Sort By Price"
           variant="filled"
           w={"xs"}
           onChange={(e) => setSortBy(e.target.value)}

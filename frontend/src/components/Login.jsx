@@ -3,7 +3,6 @@ import {
 	Flex,
 	FormControl,
 	FormLabel,
-	Image,
 	Input,
 	InputGroup,
 	InputRightElement,
@@ -19,11 +18,10 @@ import {
 	TabPanels,
 	Tabs,
 } from "@chakra-ui/react";
-import { useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { loginApi } from "../redux/Auth/auth.actions";
-import { getItem } from "../redux/localStorage";
 
 const Login = ({ isOpen, onClose, setChangeValue }) => {
 	const initState = {
@@ -41,13 +39,9 @@ const Login = ({ isOpen, onClose, setChangeValue }) => {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		console.log(form);
-		dispatch(loginApi(form)).then(() => {});
-		console.log(
-			getItem("user"),
-			getItem("token"),
-			getItem("userid"),
-			getItem("refreshToken")
-		);
+		dispatch(loginApi(form)).then(() => {
+			navigate("/");
+		});
 	};
 
 	return (
@@ -58,13 +52,13 @@ const Login = ({ isOpen, onClose, setChangeValue }) => {
 					<ModalHeader>Login</ModalHeader>
 					<ModalCloseButton />
 					<ModalBody>
-						<Flex gap="3">
+						<Flex gap="2">
 							Create new Account{" "}
 							<Link
 								onClick={() => {
 									setChangeValue(true);
 								}}
-								variant="unstyled"
+								variant="link"
 							>
 								{" "}
 								Signup
@@ -73,52 +67,46 @@ const Login = ({ isOpen, onClose, setChangeValue }) => {
 						<Tabs isFitted variant="enclosed">
 							<TabPanels>
 								<TabPanel>
-									<FormControl>
-										<FormLabel>Email address</FormLabel>
-										<Input
-											type="email"
-											name="email"
-											value={form.email}
-											onChange={handleInput}
-										/>
-									</FormControl>
-									<FormControl>
-										<FormLabel>Password</FormLabel>
-
-										<InputGroup size="md">
+									<Flex gap="2" flexDirection={"column"}>
+										<FormControl>
+											<FormLabel>Email address</FormLabel>
 											<Input
-												pr="4.5rem"
-												type={show ? "text" : "password"}
-												placeholder="Enter password"
-												value={form.password}
-												name="password"
+												type="email"
+												name="email"
+												value={form.email}
 												onChange={handleInput}
 											/>
-											<InputRightElement width="4.5rem">
-												<Button h="1.75rem" size="sm" onClick={handleClick}>
-													{show ? "Hide" : "Show"}
-												</Button>
-											</InputRightElement>
-										</InputGroup>
-									</FormControl>
+										</FormControl>
+										<FormControl>
+											<FormLabel>Password</FormLabel>
+
+											<InputGroup size="md">
+												<Input
+													pr="4.5rem"
+													type={show ? "text" : "password"}
+													placeholder="Enter password"
+													value={form.password}
+													name="password"
+													onChange={handleInput}
+												/>
+												<InputRightElement width="4.5rem">
+													<Button h="1.75rem" size="sm" onClick={handleClick}>
+														{show ? "Hide" : "Show"}
+													</Button>
+												</InputRightElement>
+											</InputGroup>
+										</FormControl>
+									</Flex>
 								</TabPanel>
 							</TabPanels>
 						</Tabs>
-						<Flex justifyContent={"space-around"}>
-							<Link>
-								<Image src="https://img.shields.io/badge/Google-4285F4?style=for-the-badge&logo=google&logoColor=white" />
-							</Link>
-							<Link>
-								<Image src="https://img.shields.io/badge/GITHUB-181717?style=for-the-badge&logo=github&logoColor=white" />
-							</Link>
-						</Flex>
 					</ModalBody>
 
 					<ModalFooter>
-						<Button colorScheme="blue" mr={3} onClick={onClose}>
+						<Button colorScheme="pink" mr={3} onClick={onClose}>
 							Close
 						</Button>
-						<Button variant="ghost" type="submit">
+						<Button variant="ghost" type="submit" onClick={onClose}>
 							Login
 						</Button>
 					</ModalFooter>

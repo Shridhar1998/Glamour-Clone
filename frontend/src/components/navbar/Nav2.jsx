@@ -20,10 +20,12 @@ import { useDisclosure } from "@chakra-ui/react";
 import { useState } from "react";
 import Signup from "../Signup";
 import Login from "../Login";
+import { getItem } from "../../redux/localStorage";
 
 const Nav2 = () => {
 	const { isOpen, onOpen, onClose } = useDisclosure();
 	const [changeValue, setChangeValue] = useState(true);
+	const isAuth = getItem("isAuth");
 	return (
 		<Box
 			margin="auto"
@@ -72,27 +74,30 @@ const Nav2 = () => {
 					<span className="length"></span>
 				</Box>
 				<Box className="vline"></Box>
-				<Box mt="0.2" cursor={"pointer"}>
-					<Link onClick={onOpen}>
-						<RiAccountCircleFill size="30px" />
-						{changeValue ? (
-							<Signup
-								isOpen={isOpen}
-								onClose={onClose}
-								setChangeValue={setChangeValue}
-							/>
-						) : (
-							<Login
-								isOpen={isOpen}
-								onClose={onClose}
-								setChangeValue={setChangeValue}
-							/>
-						)}
-					</Link>
-				</Box>
-				{/* <Box mt="0.2" cursor={"pointer"}>
-					<Dropdow htmlSize="sm" />
-				</Box> */}
+				{isAuth ? (
+					<Box mt="0.2" cursor={"pointer"}>
+						<Dropdow htmlSize="sm" />
+					</Box>
+				) : (
+					<Box mt="0.2" cursor={"pointer"}>
+						<Link onClick={onOpen}>
+							<RiAccountCircleFill size="30px" />
+							{changeValue ? (
+								<Signup
+									isOpen={isOpen}
+									onClose={onClose}
+									setChangeValue={setChangeValue}
+								/>
+							) : (
+								<Login
+									isOpen={isOpen}
+									onClose={onClose}
+									setChangeValue={setChangeValue}
+								/>
+							)}
+						</Link>
+					</Box>
+				)}
 			</Flex>
 		</Box>
 	);

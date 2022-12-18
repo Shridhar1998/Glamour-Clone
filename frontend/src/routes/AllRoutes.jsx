@@ -6,6 +6,7 @@ import Signup from "../components/Signup";
 import Cart from "../pages/Cart";
 import Checkout from "../pages/Checkout";
 import HomePage from "../pages/HomePage";
+import Payment from "../pages/Payment";
 import ProductPage from "../pages/ProductsPage/ProductPage";
 import SingleProduct from "../pages/ProductsPage/SingleProduct";
 import PostProducts from "../pages/Seller/PostProducts";
@@ -25,7 +26,7 @@ const AllRoutes = () => {
 			<Route path="/products/:category" element={<ProductPage />} />
 			<Route path="/:category/:id" element={<SingleProduct />} />
 
-			<Route path="" />
+			<Route path="/payment" element={<Payment />} />
 
 			<Route path="/checkout" element={<Checkout />} />
 			<Route path="/dashboard" element={<Dashboard />} />

@@ -61,7 +61,7 @@ const Nav2 = () => {
 			</Flex>
 			<Flex margin="auto" mt="4" justifyContent={"space-between"} width="200px">
 				<Box display="flex">
-					<Link to="">
+					<Link to="/cart">
 						<BsFillBagFill
 							style={{
 								marginRight: "20px",

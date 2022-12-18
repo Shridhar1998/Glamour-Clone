@@ -1,10 +1,59 @@
 import { Box, Divider, Text } from "@chakra-ui/react";
-import React from "react";
+import React, { useEffect } from "react";
 import "../styles/checkout.css";
 import { EmailIcon, PhoneIcon } from "@chakra-ui/icons";
 import { FaTruckMoving } from "react-icons/fa";
+import { useDispatch, useSelector } from "react-redux";
+import { getCartDetails } from "../redux/cart/action";
+import { Link } from "react-router-dom";
+import { setItem } from "../redux/localStorage";
 
 const Checkout = () => {
+
+  const dispatch = useDispatch()
+  const data = useSelector((Store) => Store.cart);
+  const cartDetails = data.cartData
+
+  const findTotal = (cartDetails) => {
+    let total = 0;
+    cartDetails.map((el) => {
+      total = total + el.quantity * el.price;
+    });
+    return total;
+  };
+
+  let total = findTotal(cartDetails);
+  setItem("total",total)
+
+
+  const months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+];
+
+const d = new Date()
+d.setDate(d.getDate() + 5);
+let month = months[d.getMonth()];
+let date = d.getDate();
+let year = d.getFullYear();
+     
+  var delDate = date + " " + month + " " + year;
+
+  useEffect(() => {
+    let id = "6398ae7a43d7f027e4d87296";
+    dispatch(getCartDetails(id));
+  },[])
+
   return (
     <>
       <Text textAlign={"center"} fontSize={["20px", "24px", "26px", "28px"]}>
@@ -32,7 +81,7 @@ const Checkout = () => {
               <Text ml={"20px"} fontSize="16px" fontWeight="600">
                 Expected Delivery Date
               </Text>
-              <Text ml="1vw">tree</Text>
+              <Text ml="1vw" fontSize="16px">{delDate}</Text>
             </div>
           </Box>
           <Box className="ordersection">
@@ -41,33 +90,24 @@ const Checkout = () => {
             </Text>
             <Divider borderColor="blackAlpha.500"></Divider>
             <div className="tablescroll">
-              <Box className="orderTable">
+          {data.cartData?.map((el,i)=>{
+              return (
+                <Box className="orderTable">
                 <Box className="imagetable">
                   <img
-                    src="https://files.myglamm.com/site-images/original/LP1_4.png"
+                    src={el.image_link}
                     alt=""
                   />
                 </Box>
                 <Box className="producttable">
-                  my name is neeraj singh
+                 {el.name}
                 </Box>
-                <Box className="quantitytable">2</Box>
-                <Box className="pricetable">36666</Box>
+                <Box className="quantitytable">{el.quantity}</Box>
+                <Box className="pricetable">${el.price}</Box>
               </Box>
-              <Divider mt={".5vh"} border="2px" bgColor={"blackAlpha.500"}></Divider>
-              <Box className="orderTable">
-                <Box className="imagetable">
-                  <img
-                    src="https://files.myglamm.com/site-images/original/LP1_4.png"
-                    alt=""
-                  />
-                </Box>
-                <Box className="producttable" fontSize={"18px"}>
-                  dsjhkfhkshdfkkwsjdlslksdjsljlsjljdljgjgjsjljsdljlsdjksdj
-                </Box>
-                <Box className="quantitytable" fontSize={"18px"}>2</Box>
-                <Box className="pricetable" fontSize={"18px"}>36666</Box>
-              </Box>
+                // <Divider mt={".5vh"} border="2px" bgColor={"blackAlpha.500"}></Divider>
+              )
+              })}
             </div>
           </Box>
         </Box>
@@ -77,11 +117,11 @@ const Checkout = () => {
           </Text>
           <Box className="orderouter">
             <Text>MRP</Text>
-            <Text>645</Text>
+            <Text>${total}</Text>
           </Box>
           <Box className="orderouter">
             <Text>Discount on MRP</Text>
-            <Text>{`-40`}</Text>
+            <Text></Text>
           </Box>
           <Text ml={"2vw"} mt="2vh" mb={"1vh"} fontSize="15px" fontWeight="600">
             Apply Promo Code
@@ -104,7 +144,7 @@ const Checkout = () => {
           </Box>
           <Box className="orderouter payable">
             <Text>Amount Payable</Text>
-            <Text>480</Text>
+            <Text>{total}</Text>
           </Box>
           <Box className="orderouter">
             <Text>You Saved</Text>
@@ -112,13 +152,15 @@ const Checkout = () => {
           </Box>
           <Box className="orderouter">
             <Text>You will earn</Text>
-            <Text>48</Text>
+            <Text>${total/10}</Text>
           </Box>
-          <button className="proceedtopayment">proceed to payment</button>
+          <Link to="/payment">
+            <button className="proceedtopayment">proceed to payment</button>
+          </Link>
         </Box>
       </div>
       <Divider borderColor="blackAlpha.500" mt={"20px"} mb="1vh"></Divider>
-      <div>kasdkj</div>
+      <div></div>
     </>
   );
 };

@@ -56,19 +56,13 @@ export const cartReducer = (state = initState, { type, payload }) => {
                 ...state,
                 cartData:payload
             }
-        case REMOVE_FROM_CART:
-            return {
-                ...state,
-                cartData:payload
-            }
         case UPDATE_CART_QUANTITY: 
             return {
                 ...state
             }
         case DELETE_CART_ITEM :
             return{
-                ...state,
-                cartData:payload
+                ...state
             }
         default:
             return state;

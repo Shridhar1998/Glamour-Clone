@@ -3,7 +3,7 @@
 // import { handleCartDuplicate } from "../../../utils/handleCartDuplicate";
 // import { getItem, setItem } from "../../../utils/localstorage";
 // import { getItemSession, removeItemSession, setItemSession } from "../../../utils/sessionStorage";
-import { DELETE_CART_ITEM, GET_CART_DETAILS, REMOVE_FROM_CART, UPDATE_CART_QUANTITY } from "./actionType";
+import { DELETE_CART_ITEM, GET_CART_DETAILS, UPDATE_CART_QUANTITY } from "./actionType";
 import axios from 'axios'
 // import { ADD_TO_CART_SUCCESS, APPLY_COUPON_SUCCESS, REMOVE_COUPON_SUCCESS, REMOVE_FROM_CART, UPDATE_CART_DETAILS } from "./actionTypes";
 
@@ -28,30 +28,33 @@ import axios from 'axios'
 // }
 
 export const getCartDetails = (id) => async(dispatch)=> {
-    let res = await axios.get(`http://localhost:8080/cart/${id}`)
+    let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOThhZTdhNDNkN2YwMjdlNGQ4NzI5NiIsIm5hbWUiOiJ1c2VyMSIsImVtYWlsIjoidXNlcjFAZ2xhbW91ci5jb20iLCJyb2xlIjoidXNlciIsImlhdCI6MTY3MTMwMzgzOCwiZXhwIjoxNjcxOTA4NjM4fQ.v7jT8xQbIMNk4zPevF3B30Ul6ItbaaxKhO0NOQ0ElWk"
+    let res = await axios.get(`https://glamour.onrender.com/cart/${id}`,{headers:{authorization:token}})
     console.log("res",res.data)
     return dispatch({type: GET_CART_DETAILS, payload: res.data})
 }
 
-// getCartDetails()
-export const removeCartItem = (id) => async(dispatch)=> {
-    let res = await axios.delete(`http://localhost:8080/cart/${id}`)
-    // console.log("res",res.data)
-    return dispatch({type: REMOVE_FROM_CART, payload: res.data})
-}
 
 export const updateQuantity = (id,value) => async(dispatch)=> {
-    let res = await axios.patch(`http://localhost:8080/cart/${id}`,{quantity:value})
+    let res = await axios.patch(`https://glamour.onrender.com/cart/${id}`,{quantity:value})
     console.log("resupdate",res.data)
     return dispatch({type: UPDATE_CART_QUANTITY,payload:res.data})
 }
 
 
 export const deleteCartItem = (id) => async(dispatch)=> {
-    let res = await axios.delete(`http://localhost:8080/cart/${id}`)
+    let res = await axios.delete(`https://glamour.onrender.com/cart/${id}`)
     console.log("resdelete",res.data)
-    return dispatch({type: DELETE_CART_ITEM,payload:res.data})
+    return dispatch({type: DELETE_CART_ITEM})
 }
+
+export const addToCart = (id) => async(dispatch) => {
+    let res = await axios.post(`https://glamour.onrender.com/cart/${id}`)
+}
+
+// export const emptyCart = () => async() => {
+//     let res = await axios.
+// }
 
 // export const addToCartRequest = (data, toast, operation = 'add') => (dispatch) => {
 //     let cartData = getItem('cartProducts') || [];

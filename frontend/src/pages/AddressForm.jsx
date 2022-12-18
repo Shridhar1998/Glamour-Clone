@@ -1,11 +1,22 @@
 import { Box, Text } from "@chakra-ui/react";
 import React from "react";
 import { useState } from "react";
+import { setItem } from "../redux/localStorage";
 import "./styles/addressform.css";
 // import {Link} from 'react-router-dom'
 
+let initial ={
+  name:"",
+  mobile:"",
+  pincode:"",
+  city:"",
+  state:"",
+  type:"home"
+}
+
 const AddressForm = () => {
   const [type, setType] = useState("");
+  const [formData, setFormData] = useState(initial);
 
   const handleAddress = (e) => {
     console.log(e.target.className);
@@ -22,6 +33,18 @@ const AddressForm = () => {
   };
 
   console.log(type);
+  const handleChange = (e) => {
+    e.preventDefault()
+    const {name,value} = e.target
+    setFormData({...formData,[name]:value})
+  }
+
+
+let address = formData
+  const handleSubmit=() => {
+    address = {...formData,"type":type}
+    setItem("address",address)
+  }
 
   return (
     <>
@@ -33,13 +56,15 @@ const AddressForm = () => {
         <Text fontSize="16px" fontWeight={"600"} textAlign="left" ml={"5vw"} mt="30px">
           Contact
         </Text>
+        <form action="">
+
         <Box className="contactInfo">
           <div className="myfloat">
-            <input type="text" placeholder=" " required />
+            <input type="text" placeholder=" " required onChange={handleChange} />
             <label>Name</label>
           </div>
           <div className="myfloat">
-            <input type="text" placeholder=" " required />
+            <input type="number" placeholder=" " required onChange={handleChange} />
             <label>Mobile</label>
           </div>
         </Box>
@@ -50,21 +75,21 @@ const AddressForm = () => {
         <Box className="addressInfo">
           <Box className="addresspin">
             <div className="myfloat">
-              <input type="text" placeholder=" " required />
+              <input type="number" placeholder=" " required onChange={handleChange} />
               <label>Pincode</label>
             </div>
             <div className="myfloat">
-              <input type="text" placeholder=" " required />
+              <input type="text" placeholder=" " required onChange={handleChange} />
               <label>City</label>
             </div>
             <div className="myfloat">
-              <input type="text" placeholder=" " required />
+              <input type="text" placeholder=" " required onChange={handleChange} />
               <label>State</label>
             </div>
           </Box>
           <Box className="detailedaddress">
             <div className="myfloat addressfield">
-              <input type="text" placeholder=" " required  />
+              <input type="text" placeholder=" " required onChange={handleChange} />
               <label>Address</label>
             </div>
           </Box>
@@ -79,9 +104,10 @@ const AddressForm = () => {
           </Box>
           <Box className="lastbuttons">
             <button className="lastbtn">Back</button>
-            <button className="lastbtn shipbtn">Ship to this Address</button>
+            <button className="lastbtn shipbtn" onClick={handleSubmit} >Ship to this Address</button>
           </Box>
         </Box>
+        </form>
       </Box>
     </>
   );

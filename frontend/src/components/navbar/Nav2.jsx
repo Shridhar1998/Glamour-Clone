@@ -21,6 +21,7 @@ import Signup from "../Signup";
 import Login from "../Login";
 import { Link } from "react-router-dom";
 import { getItem } from "../../redux/localStorage";
+import {Link} from "react-router-dom"
 
 const Nav2 = () => {
 	const { isOpen, onOpen, onClose } = useDisclosure();

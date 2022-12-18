@@ -1,5 +1,7 @@
 import {
 	Button,
+	Center,
+	Divider,
 	Flex,
 	Link,
 	Modal,
@@ -14,12 +16,15 @@ import {
 	TabPanel,
 	TabPanels,
 	Tabs,
+	Text,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useToast } from "@chakra-ui/react";
 import { signUpApi } from "../redux/Auth/auth.actions";
 import Form from "./Form";
+import { FcGoogle } from "react-icons/fc";
+import { FaGithub } from "react-icons/fa";
 
 const Signup = ({ isOpen, onClose, setChangeValue }) => {
 	const initState = {
@@ -41,7 +46,7 @@ const Signup = ({ isOpen, onClose, setChangeValue }) => {
 				toast({
 					title: "New user added! Welcome✨",
 					description: "It's a start of something amazing.",
-					position: "top-left",
+					position: "top",
 					status: "success",
 					duration: 5000,
 					isClosable: true,
@@ -51,7 +56,7 @@ const Signup = ({ isOpen, onClose, setChangeValue }) => {
 				toast({
 					title: "Internal server error!",
 					description: "Please try after sometime.",
-					position: "top-left",
+					position: "top",
 					status: "error",
 					duration: 5000,
 					isClosable: true,
@@ -69,6 +74,7 @@ const Signup = ({ isOpen, onClose, setChangeValue }) => {
 						<Flex gap="2" pb="4">
 							Already have an account?
 							<Link
+								color={"pink.600"}
 								onClick={() => {
 									setChangeValue(false);
 								}}
@@ -102,6 +108,30 @@ const Signup = ({ isOpen, onClose, setChangeValue }) => {
 								<TabPanel>
 									<Form {...form} onClose={onClose} handleInput={handleInput} />
 								</TabPanel>
+								<Flex flexDirection={"column"} gap="2" w="90%" m="auto">
+									<Center>
+										<Divider w="30%" />
+										<Text p="2">or continue with</Text>
+										<Divider w="30%" />
+									</Center>
+									<Button
+										colorScheme="whiteAlpha"
+										color={"black"}
+										variant="outline"
+										borderColor={"gray"}
+										leftIcon={<FcGoogle size={"20"} />}
+									>
+										Google
+									</Button>
+									<Button
+										colorScheme="whiteAlpha"
+										color={"black"}
+										variant="outline"
+										leftIcon={<FaGithub size={"20"} />}
+									>
+										GitHub
+									</Button>
+								</Flex>
 							</TabPanels>
 						</Tabs>
 					</ModalBody>

@@ -56,4 +56,15 @@ app.delete("/:id", async(req,res)=> { // document ki object _id
     }
 })
 
+app.delete("/all/:id", async(req,res)=> {//user ki id se
+    const {id} = req.params;
+    // console.log(id)
+    try{
+        const deleteAllitems = await CartModel.deleteMany({userId: id});
+        return res.status(201).send({ message: "deleted all data", deleteAllitems});
+    }catch(e){
+        return res.status(400).send(e)
+    }
+})
+
 module.exports = app;

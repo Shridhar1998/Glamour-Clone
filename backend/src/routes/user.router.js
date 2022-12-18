@@ -18,6 +18,17 @@ app.get("/",adminAuthMiddleware, async (req,res)=> {
     return res.send(users)
 })
 
+app.get("/:id", async(req,res)=> {
+    const {id} = req.params;
+    // console.log(id)
+    try{
+        const user = await UserModel.findById(req.params.id);
+        return res.status(201).send(user);
+    }catch(e){
+        return res.status(400).send(e);
+    }
+})
+
 app.post("/signup", async(req,res)=> {
     let {name, email, password, role, status} = req.body;
     if(role === "seller"){

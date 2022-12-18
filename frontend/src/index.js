@@ -8,10 +8,8 @@ import { Provider } from "react-redux";
 
 import App from "./App";
 
-
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-
 	<BrowserRouter>
 		<ChakraProvider>
 			<Provider store={Store}>
@@ -19,5 +17,4 @@ root.render(
 			</Provider>
 		</ChakraProvider>
 	</BrowserRouter>
-
 );

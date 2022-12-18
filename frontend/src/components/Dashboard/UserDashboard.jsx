@@ -16,7 +16,7 @@ const UserDashboard = () => {
 	const user = getItem("userid");
 
 	const token = getItem("token");
-	const [data, setData] = useState([]);
+	const [data, setData] = useState({});
 
 	axios
 		.get(`https://glamour.onrender.com/user/${user}`, {
@@ -25,8 +25,7 @@ const UserDashboard = () => {
 			},
 		})
 		.then((res) => setData(res.data));
-
-	console.log(data);
+	let date = new Date(data.createdAt);
 	return (
 		<Card
 			direction={{ base: "column", sm: "row" }}
@@ -48,37 +47,26 @@ const UserDashboard = () => {
 			<Stack>
 				<CardBody pl={["", "20"]}>
 					<Heading size="lg">Profile</Heading>
-
-					{data.map((ele) => {
-						if (ele._id === user) {
-							let date = new Date(ele.createdAt);
-							return (
-								<SimpleGrid
-									key={ele.email}
-									pt="4"
-									columns={2}
-									spacingX={["2", "300"]}
-									spacingY={["2", "30"]}
-								>
-									<Box>
-										<Heading size={["sm", "md"]}>Name</Heading>
-										<Text fontSize={["md", "lg"]}>{ele.name} </Text>
-									</Box>
-									<Box>
-										<Heading size={["sm", "md"]}>Email</Heading>
-										<Text fontSize={["md", "lg"]}>{ele.email}</Text>
-									</Box>
-									<Box>
-										<Heading size={["sm", "md"]}>Joined on</Heading>
-										<Text fontSize={["md", "lg"]}>
-											{date.toLocaleDateString()}
-										</Text>
-									</Box>
-								</SimpleGrid>
-							);
-						}
-						return <div key={ele.email}></div>;
-					})}
+					<SimpleGrid
+						key={data.email}
+						pt="4"
+						columns={2}
+						spacingX={["2", "300"]}
+						spacingY={["2", "30"]}
+					>
+						<Box>
+							<Heading size={["sm", "md"]}>Name</Heading>
+							<Text fontSize={["md", "lg"]}>{data.name} </Text>
+						</Box>
+						<Box>
+							<Heading size={["sm", "md"]}>Email</Heading>
+							<Text fontSize={["md", "lg"]}>{data.email}</Text>
+						</Box>
+						<Box>
+							<Heading size={["sm", "md"]}>Joined on</Heading>
+							<Text fontSize={["md", "lg"]}>{date.toLocaleDateString()}</Text>
+						</Box>
+					</SimpleGrid>
 				</CardBody>
 			</Stack>
 		</Card>

@@ -82,7 +82,7 @@
     height: 30px;
     font-size: 16px;
     padding: 5px;
-    border: 1px solid rgb(129, 125, 125);
+    border: 1px solid;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -105,10 +105,15 @@
 }
 .lastbtn{
     display: block;
-    border: 1px solid;
+    border: 1px solid rgb(253, 84, 84);
     padding: 0px 10px;
     height: 30px;
-    font-size: 18px;
+    font-size: 16px;
+    text-transform: uppercase;
+    font-weight: 700;
+    color:rgb(253, 84, 84);
+    background-color: rgb(255, 171, 171);
+
 }
 
 

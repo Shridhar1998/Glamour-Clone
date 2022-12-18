@@ -27,6 +27,8 @@ import styles from "./product.module.css";
 import { dummydata } from "./data";
 
 function ProductPage() {
+  // completed
+  // future: pagination 
   const [data, setData] = useState(Array(8).fill(0));
   const [prod, setProd] = useState([]);
   const { category } = useParams();

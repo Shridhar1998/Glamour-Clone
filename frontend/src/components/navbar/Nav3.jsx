@@ -370,7 +370,7 @@ const Nav3 = () => {
               >
                 <Heading fontSize="14px" color="rgb(255,183,161)">
                   {" "}
-                  SHOP BY COLLECTION
+                  REWARD
                 </Heading>
                 <Text>MyGlamm</Text>
                 <Text>SUPERFOODS</Text>

@@ -30,10 +30,10 @@ import P_Description from "../../components/ProductPage/P_Description";
 import { useNavigate, useParams } from "react-router";
 import axios from "axios";
 import P_video from "../../components/ProductPage/P_Video_Desc";
-import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+// import { Link } from "react-router-dom";
+// import { useSelector } from "react-redux";
 import { getItem } from "../../redux/localStorage";
-import { getCartDetails } from "../../redux/cart/action";
+// import { getCartDetails } from "../../redux/cart/action";
 
 function SingleProduct() {
   const [prod, setProd] = useState({});

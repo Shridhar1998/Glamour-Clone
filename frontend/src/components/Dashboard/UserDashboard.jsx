@@ -19,7 +19,7 @@ const UserDashboard = () => {
 	const [data, setData] = useState([]);
 
 	axios
-		.get("https://glamour.onrender.com/user", {
+		.get(`https://glamour.onrender.com/user/${user}`, {
 			headers: {
 				authorization: token,
 			},

@@ -15,8 +15,10 @@ import React from "react";
 import { TriangleDownIcon } from "@chakra-ui/icons";
 import upiimg from "../Images/bhimupi.png";
 import "../styles/payment.css";
+import { getItem } from "../redux/localStorage";
 const Payment = () => {
   const [value, setValue] = React.useState("1");
+  let total = getItem("total")
 
   return (
     <>
@@ -93,7 +95,7 @@ const Payment = () => {
                   <option value="">Canara Bank</option>
                 </select>{" "}
                 <Button colorScheme={"white"} color={"white"} bgColor="black">
-                  aaasa
+                  {`PAY $${total}`}
                 </Button>{" "}
               </div>
             </AccordionPanel>
@@ -176,7 +178,7 @@ const Payment = () => {
                   ml={["10%","0%","0%","0%","0%"]}
                 ></Input>
               </Box>
-              <Button bgColor={"black"} color="white" fontSize={["15px","18px","20px","22px","24px"]} colorScheme="green" display={"block"}  m="auto" mt={"20px"} borderRadius="%">PAY 222</Button>
+              <Button bgColor={"black"} color="white" fontSize={["15px","18px","20px","22px","24px"]} colorScheme="green" display={"block"}  m="auto" mt={"20px"} borderRadius="%">{`PAY $${total}`}</Button>
             </AccordionPanel>
           </AccordionItem>
           <AccordionItem

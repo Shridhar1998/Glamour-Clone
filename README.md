@@ -1,5 +1,7 @@
 # Glamour
 
+![Responsive](https://user-images.githubusercontent.com/103197193/208367218-a6629c26-0fee-4e39-ba3f-d168af06df15.png)
+
 ## Project Details
 
 ### `Project Code: trusty-bee-5170`
@@ -24,6 +26,7 @@ Glamour is an Indian e-commerce company that sells cosmetics and personal care p
 
 ### Features
 
+- All pages are Responsive
 - Landing page for Glamour
 - Login and Signup Based on role (Admin, Customer, Seller)
 - Role Based Dashboard

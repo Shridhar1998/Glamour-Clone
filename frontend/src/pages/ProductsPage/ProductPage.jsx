@@ -28,44 +28,53 @@ import { dummydata } from "./data";
 
 function ProductPage() {
   // completed
-  // future: pagination 
-  const [data, setData] = useState(Array(8).fill(0));
+  // future: pagination
+  const [data, setData] = useState([]);
   const [prod, setProd] = useState([]);
   const { category } = useParams();
   const [sortBy, setSortBy] = useState("asc");
-  const [page,setPage]=useState(2)
+  const [page, setPage] = useState(2);
   function handleGet() {
-    
-    axios(`https://glamour.onrender.com/products/${category}?page=${page}`).then((res) => {
+    axios(
+      `https://glamour.onrender.com/products/${category}?page=${page}`
+    ).then((res) => {
       setProd(res.data);
       // console.log(res, "prod");
       localStorage.setItem("data", JSON.stringify(res.data));
     });
   }
+
+  function allProducts() {
+    axios.get(`https://glamour.onrender.com/products`).then((res) => {
+      let rdata = res.data;
+      let catdata = rdata.filter((e) => e.category == category&&e.price>0);
+  //  console.log(catdata,"catdata")
+     setData(catdata);
+    });
+  }
+ 
+
   function letsSort(sortBy) {
-    if (sortBy =="asc") {
-      return axios.get(
-        `https://glamour.onrender.com/products/${category}/${sortBy}/sort`
-      ).then(res=>{
-        // setProd(res.data)
-        console.log(res,"sort")})
-    } else if (sortBy =="desc") {
-  
-      return axios.get(
-        `https://glamour.onrender.com/products/${category}/${sortBy}/sort`
-      ).then(res=>console.log(res,"desc"))
+    if (sortBy == "asc") {
+      // console.log(data,"sorted")
+      let updatedata = data.sort((a,b)=>Number(a.price)-Number(b.price))
+      setProd(updatedata)
+    
+        
+    } else if (sortBy == "desc") {
+      let updatedata = data.sort((b,a)=>Number(a.price)-Number(b.price))
+      setProd(updatedata)
     }
   }
+
   useEffect(() => {
     letsSort(sortBy);
   }, [sortBy]);
 
-  console.log(prod);
+  // console.log(prod);
   useEffect(() => {
     setProd(dummydata);
-    if(category=="gel"){
-setPage(1)
-    }
+    allProducts();
   }, []);
 
   useEffect(() => {

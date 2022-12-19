@@ -8,7 +8,7 @@
 
 Glamour is an Indian e-commerce company that sells cosmetics and personal care products. Glamour is dedicated to the clean beauty movement and all of their products are vegan, cruelty-free and PETA-approved. Products are made with a majority of natural ingredients and extracts and are free of parabens, phthalates, alcohol and sulfates.
 
-#### <a href="https://glamour-seven.vercel.app/">Want to see live preview >></a>
+#### <a href="https://glamour-ashy.vercel.app">Want to see live preview >></a>
 
 ### Pages
 

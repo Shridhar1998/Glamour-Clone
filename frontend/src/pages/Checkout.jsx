@@ -1,5 +1,5 @@
 import { Box, Divider, Text } from "@chakra-ui/react";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "../styles/checkout.css";
 import { EmailIcon, PhoneIcon } from "@chakra-ui/icons";
 import { FaTruckMoving } from "react-icons/fa";
@@ -24,6 +24,8 @@ const Checkout = () => {
 
   let total = findTotal(cartDetails);
   setItem("total",total)
+
+  const addressDetails = JSON.parse(getItem("address"))
 
 
   const months = [
@@ -67,17 +69,17 @@ let year = d.getFullYear();
             <Text fontSize="16px" mt="3vh" fontWeight="600" mb="1vh">SHIPPING ADDRESS</Text>
             <Divider borderColor="blackAlpha.500"></Divider>
             <Text fontSize={"16px"} fontWeight="600" mt={"1vh"}>
-              Neeraj Singh
+              {addressDetails.name}
             </Text>
             <Text fontSize={"15px"} mb="1.5vh">
-              Chaudhary colony
+             {addressDetails.address}
             </Text>
             <PhoneIcon h={"18px"} />
-            <span style={{ marginLeft: "1vw", fontSize:"16px" }} > 88996368856</span>
+            <span style={{ marginLeft: "1vw", fontSize:"16px" }} >{addressDetails.mobile} </span>
             <br />
-            <EmailIcon h={"18px"}  /> <span style={{ marginLeft: "1vw", fontSize:"17px"  }}>saksadjljs</span>
+            <EmailIcon h={"18px"}  /> <span style={{ marginLeft: "1vw", fontSize:"17px"  }}></span>
             <br />
-            <button className="changebtn">CHANGE</button>
+            <Link to="/addressform"><button className="changebtn">CHANGE</button></Link>
             <div className="deldate">
               <FaTruckMoving />
               <Text ml={"20px"} fontSize="16px" fontWeight="600">

@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import Dashboard from "../components/Dashboard/Dashboard";
 import Login from "../components/Login";
 import Signup from "../components/Signup";
+import AddressForm from "../pages/AddressForm";
 import Cart from "../pages/Cart";
 import Checkout from "../pages/Checkout";
 import HomePage from "../pages/HomePage";
@@ -20,6 +21,7 @@ const AllRoutes = () => {
 			<Route path="/addproduct" element={<PostProducts />} />
 
 			<Route path="/cart" element={<Cart />} />
+			<Route path="/addressform" element={<AddressForm/>}/>
 
 			<Route path="/makeup" element={<ProductPage />} />
 

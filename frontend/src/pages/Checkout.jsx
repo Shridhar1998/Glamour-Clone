@@ -1,5 +1,5 @@
 import { Box, Divider, Text } from "@chakra-ui/react";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import "../styles/checkout.css";
 import { EmailIcon, PhoneIcon } from "@chakra-ui/icons";
 import { FaTruckMoving } from "react-icons/fa";
@@ -9,24 +9,22 @@ import { Link } from "react-router-dom";
 import { getItem, setItem } from "../redux/localStorage";
 
 const Checkout = () => {
-
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const data = useSelector((Store) => Store.cart);
-  const cartDetails = data.cartData
+  const cartDetails = data.cartData;
 
   const findTotal = (cartDetails) => {
     let total = 0;
     cartDetails.map((el) => {
-      return total = total + el.quantity * el.price;
+      return (total = total + el.quantity * el.price);
     });
     return total;
   };
 
   let total = findTotal(cartDetails);
-  setItem("total",total)
+  setItem("total", total);
 
-  const addressDetails = JSON.parse(getItem("address"))
-
+  const addressDetails = JSON.parse(getItem("address"));
 
   const months = [
     "January",
@@ -41,14 +39,14 @@ const Checkout = () => {
     "October",
     "November",
     "December",
-];
+  ];
 
-const d = new Date()
-d.setDate(d.getDate() + 5);
-let month = months[d.getMonth()];
-let date = d.getDate();
-let year = d.getFullYear();
-     
+  const d = new Date();
+  d.setDate(d.getDate() + 5);
+  let month = months[d.getMonth()];
+  let date = d.getDate();
+  let year = d.getFullYear();
+
   var delDate = date + " " + month + " " + year;
 
   useEffect(() => {
@@ -56,7 +54,7 @@ let year = d.getFullYear();
     let token = getItem("token");
     // console.log(id)
     dispatch(getCartDetails(id, token));
-  },[])
+  }, []);
 
   return (
     <>
@@ -66,26 +64,35 @@ let year = d.getFullYear();
       <div className="outerbox1">
         <Box className=" innerbox1">
           <Box className="shippingadddress">
-            <Text fontSize="16px" mt="3vh" fontWeight="600" mb="1vh">SHIPPING ADDRESS</Text>
+            <Text fontSize="16px" mt="3vh" fontWeight="600" mb="1vh">
+              SHIPPING ADDRESS
+            </Text>
             <Divider borderColor="blackAlpha.500"></Divider>
             <Text fontSize={"16px"} fontWeight="600" mt={"1vh"}>
               {addressDetails.name}
             </Text>
             <Text fontSize={"15px"} mb="1.5vh">
-             {addressDetails.address}
+              {addressDetails.address}
             </Text>
             <PhoneIcon h={"18px"} />
-            <span style={{ marginLeft: "1vw", fontSize:"16px" }} >{addressDetails.mobile} </span>
+            <span style={{ marginLeft: "1vw", fontSize: "16px" }}>
+              {addressDetails.mobile}{" "}
+            </span>
             <br />
-            <EmailIcon h={"18px"}  /> <span style={{ marginLeft: "1vw", fontSize:"17px"  }}></span>
+            <EmailIcon h={"18px"} />{" "}
+            <span style={{ marginLeft: "1vw", fontSize: "17px" }}></span>
             <br />
-            <Link to="/addressform"><button className="changebtn">CHANGE</button></Link>
+            <Link to="/addressform">
+              <button className="changebtn">CHANGE</button>
+            </Link>
             <div className="deldate">
               <FaTruckMoving />
               <Text ml={"20px"} fontSize="16px" fontWeight="600">
                 Expected Delivery Date
               </Text>
-              <Text ml="1vw" fontSize="16px">{delDate}</Text>
+              <Text ml="1vw" fontSize="16px">
+                {delDate}
+              </Text>
             </div>
           </Box>
           <Box className="ordersection">
@@ -94,23 +101,18 @@ let year = d.getFullYear();
             </Text>
             <Divider borderColor="blackAlpha.500"></Divider>
             <div className="tablescroll">
-          {data.cartData?.map((el,i)=>{
-              return (
-                <Box className="orderTable" key={i}>
-                <Box className="imagetable">
-                  <img
-                    src={el.image_link}
-                    alt=""
-                  />
-                </Box>
-                <Box className="producttable">
-                 {el.name}
-                </Box>
-                <Box className="quantitytable">{el.quantity}</Box>
-                <Box className="pricetable">${el.price}</Box>
-              </Box>
-                // <Divider mt={".5vh"} border="2px" bgColor={"blackAlpha.500"}></Divider>
-              )
+              {data.cartData?.map((el, i) => {
+                return (
+                  <Box className="orderTable" key={i}>
+                    <Box className="imagetable">
+                      <img src={el.image_link} alt="" />
+                    </Box>
+                    <Box className="producttable">{el.name}</Box>
+                    <Box className="quantitytable">{el.quantity}</Box>
+                    <Box className="pricetable">${el.price}</Box>
+                  </Box>
+                  // <Divider mt={".5vh"} border="2px" bgColor={"blackAlpha.500"}></Divider>
+                );
               })}
             </div>
           </Box>
@@ -156,7 +158,7 @@ let year = d.getFullYear();
           </Box>
           <Box className="orderouter">
             <Text>You will earn</Text>
-            <Text>${total/10}</Text>
+            <Text>${total / 10}</Text>
           </Box>
           <Link to="/payment">
             <button className="proceedtopayment">proceed to payment</button>

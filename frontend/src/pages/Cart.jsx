@@ -1,4 +1,4 @@
-import { Box, Button, Divider, Image, Text } from "@chakra-ui/react";
+import { Box, Button, Image, Text } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import {
   deleteCartItem,
@@ -8,7 +8,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import "../styles/cart.css";
 import { Link } from "react-router-dom";
-import { getItem, setItem } from "../redux/localStorage";
+import { getItem } from "../redux/localStorage";
 
 const Cart = () => {
   const [inc, setInc] = useState(false);
@@ -16,15 +16,15 @@ const Cart = () => {
   const [itemDelete, setItemDelete] = useState(false);
   const dispatch = useDispatch();
   const data = useSelector((Store) => Store.cart);
-  const token = getItem("token")
-  const totalCartItems = data.cartData.length
-  console.log(totalCartItems)
+  const token = getItem("token");
+  const totalCartItems = data.cartData.length;
+  // console.log(totalCartItems)
 
   let cartDetails = data.cartData;
-  const id = getItem("userid")
+  const id = getItem("userid");
   const findTotal = (cartDetails) => {
     let total = 0;
-    cartDetails.map((el) => {
+    let data = cartDetails.map((el) => {
       total = total + el.quantity * el.price;
     });
     return total;
@@ -48,23 +48,26 @@ const Cart = () => {
   };
 
   useEffect(() => {
-    dispatch(getCartDetails(id,token));
+    dispatch(getCartDetails(id, token));
   }, [inc, dec, itemDelete]);
 
+  return +totalCartItems === 0 ? (
+    <Box h="400px">
+      <Text textAlign={"center"} mt="20vh">
+        Oops! Your bag is empty!
+      </Text>
+      <Box
+        display="flex"
+        justifyContent={"center"}
+        alignItems="center"
+        mt={"20px"}
+      >
+        <Image src="https://res.cloudinary.com/dcmmvm9mf/image/upload/v1671372251/olximages/img-empty-shopping-cart_zijcie.png"></Image>
+      </Box>
+    </Box>
+  ) : (
+    // )
 
-
-return  (totalCartItems == 0) ?   
-
-  (<Box h="400px">
-  <Text textAlign={"center"} mt="20vh">Oops! Your bag is empty!</Text>
-  <Box  display="flex" justifyContent={"center"} alignItems="center" mt={"20px"}>
-    <Image  src="https://res.cloudinary.com/dcmmvm9mf/image/upload/v1671372251/olximages/img-empty-shopping-cart_zijcie.png"></Image>
-  </Box>
-  </Box>) : 
-
-// )
-
-   (
     <>
       <div className="outerbox">
         <div>
@@ -98,7 +101,7 @@ return  (totalCartItems == 0) ?
                       fontSize={["20px", "24px", "28px"]}
                       borderRadius="50%"
                       onClick={() => handleDec(el._id, el.quantity)}
-                      isDisabled= {el.quantity == 1}
+                      isDisabled={+el.quantity === 1}
                     >
                       -
                     </Button>
@@ -116,16 +119,14 @@ return  (totalCartItems == 0) ?
                       className="counterbtn"
                       fontSize={["20px", "24px", "28px"]}
                       borderRadius="50%"
-                      p={"0px"} 
-                      isDisabled= {el.quantity == 10}
-
+                      p={"0px"}
+                      isDisabled={+el.quantity === 10}
                       onClick={() => handleInc(el._id, el.quantity)}
-                      
                     >
                       +
                     </Button>
                   </div>
-                  <div className="removeproduct" >
+                  <div className="removeproduct">
                     <button
                       className="removebtn"
                       onClick={() => handleRemove(el._id)}

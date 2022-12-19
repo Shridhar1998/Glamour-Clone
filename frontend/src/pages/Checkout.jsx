@@ -6,8 +6,7 @@ import { FaTruckMoving } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { getCartDetails } from "../redux/cart/action";
 import { Link } from "react-router-dom";
-import { setItem } from "../redux/localStorage";
-import { getItem } from "../redux/localStorage";
+import { getItem, setItem } from "../redux/localStorage";
 
 const Checkout = () => {
 
@@ -18,7 +17,7 @@ const Checkout = () => {
   const findTotal = (cartDetails) => {
     let total = 0;
     cartDetails.map((el) => {
-      total = total + el.quantity * el.price;
+      return total = total + el.quantity * el.price;
     });
     return total;
   };
@@ -53,8 +52,10 @@ let year = d.getFullYear();
   var delDate = date + " " + month + " " + year;
 
   useEffect(() => {
-    let id = "6398ae7a43d7f027e4d87296";
-    dispatch(getCartDetails(id));
+    let id = getItem("userid");
+    let token = getItem("token");
+    // console.log(id)
+    dispatch(getCartDetails(id, token));
   },[])
 
   return (

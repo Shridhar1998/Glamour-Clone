@@ -64,7 +64,7 @@ Glamour is an Indian e-commerce company that sells cosmetics and personal care p
 ![Product](https://user-images.githubusercontent.com/103197193/208614835-58c21768-c0fc-40fd-b999-7dec53cd3489.png)
 
 #### Cart Page
-![Product](https://user-images.githubusercontent.com/103197193/208615226-8c04ae6c-7909-4500-855a-aa6cfe6737bb.png)
+![Cart](https://user-images.githubusercontent.com/103197193/208617512-a8530db1-2263-4337-9af8-4145e8640b0c.png)
 
 #### Checkout
 ![Checkout](https://user-images.githubusercontent.com/103197193/208615518-d02f3fdd-69bf-459a-9c9f-0ed81dbae39f.png)

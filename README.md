@@ -49,6 +49,30 @@ Glamour is an Indian e-commerce company that sells cosmetics and personal care p
 <img src="https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white" alt="mongodb" />
 </p>
 
+## Screenshots
+
+#### Login & Signup
+![Login](https://user-images.githubusercontent.com/103197193/208611902-aeb919a8-8a79-4f8a-a2b8-9d67f165b75d.png)
+
+#### Dashboard (Admin, Customer)
+![dashboard](https://user-images.githubusercontent.com/103197193/208613987-a254cc51-fe29-466d-b52b-beaa7fe00b55.png)
+
+#### Product Category
+![ProductCategory](https://user-images.githubusercontent.com/103197193/208614565-129e06c8-2009-40f6-a042-e9917a24ad78.png)
+
+#### Product Page
+![Product](https://user-images.githubusercontent.com/103197193/208614835-58c21768-c0fc-40fd-b999-7dec53cd3489.png)
+
+#### Cart Page
+![Product](https://user-images.githubusercontent.com/103197193/208615226-8c04ae6c-7909-4500-855a-aa6cfe6737bb.png)
+
+#### Checkout
+![Checkout](https://user-images.githubusercontent.com/103197193/208615518-d02f3fdd-69bf-459a-9c9f-0ed81dbae39f.png)
+
+#### Add Products & Dashboard (Only for Seller)
+![Add Product](https://user-images.githubusercontent.com/103197193/208616530-a4d29e5c-43dd-46cb-83d9-948bab8b8687.png)
+
+
 ## `Team Members`
 
 ### Neeraj Singh
